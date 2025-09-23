@@ -1,0 +1,5 @@
+# Thư mục node_modules (chứa thư viện cài qua npm)
+node_modules/
+
+# File môi trường (chứa password, API key, DB URI, ...)
+.env

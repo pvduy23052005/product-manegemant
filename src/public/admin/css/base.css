@@ -1,0 +1,29 @@
+@import url("https://fonts.googleapis.com/css2?family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+
+:root {
+  /* Light theme colors */
+  --color-text-primary: #1f2936; /* màu chữ chính */
+  --color-text-placeholder: #798eae; /* màu placeholder */
+  --color-bg-primary: #f9fafb; /* nền chính */
+  --color-bg-secondary: #ececfd; /* nền phụ */
+  --color-bg-sidebar: #ffffff; /* nền sidebar */
+  --color-border-hr: #e2e8f0; /* màu viền/đường kẻ */
+  --color-hover-primary: #695cfe; /* màu hover chính */
+  --color-hover-secondary: #e2e2fb; /* màu hover phụ */
+  --color-shadow: rgba(0, 0, 0, 0.05); /* bóng đổ */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style-type: none;
+}
