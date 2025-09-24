@@ -13,6 +13,18 @@
   --color-shadow: rgba(0, 0, 0, 0.05); /* bóng đổ */
 }
 
+body.dark {
+  /* Dark theme colors */
+  --color-text-primary: #f1f5f9;
+  --color-text-placeholder: #a6b7d2;
+  --color-bg-primary: #111827;
+  --color-bg-secondary: #3d4859;
+  --color-bg-sidebar: #1f2937;
+  --color-border-hr: #3b475c;
+  --color-hover-secondary: #48566a;
+  --color-shadow: rgba(0, 0, 0, 0.3);
+}
+
 * {
   margin: 0;
   padding: 0;

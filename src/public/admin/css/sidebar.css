@@ -3,6 +3,12 @@
   font-size: 18px;
   color: var(--color-text-primary);
   transition: all 0.4s ease;
+  opacity: 1;
+}
+
+.sidebar.close .text {
+  opacity: 0;
+  pointer-events: none;
 }
 
 .sidebar .icon {
@@ -11,11 +17,13 @@
   min-width: 60px;
   transition: all 0.4s ease;
 }
-/* end tai su dung */
 
-body {
-  background-color: var(--color-secondary);
+.sidebar.close .icon {
+  min-width: 80px;
+  font-size: 20px;
 }
+
+/* end tai su dung */
 
 .sidebar {
   position: fixed;
@@ -27,29 +35,45 @@ body {
   width: 250px;
   background-color: var(--color-secondary);
   box-shadow: 0px 3px 5px 9px var(--color-shadow);
-  /* overflow-y: auto;
-  overflow-x: hidden; */
+  z-index: 999;
+  background-color: var(--color-bg-sidebar);
+  transition: all 0.4s ease;
+}
+
+.sidebar.close {
+  width: 80px;
 }
 
 .sidebar .sidebar-header {
   display: flex;
   align-items: center;
-  padding: 10px 20px;
   position: relative;
+  padding: 5px 0px;
   box-shadow: 0px 0px 5px 0px var(--color-shadow);
 }
 
 .sidebar .sidebar-header a {
-  width: 55px;
-  height: auto;
-  margin-right: 10px;
+  height: 100%;
+  min-width: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidebar.close .sidebar-header a {
+  min-width: 85px;
 }
 
 .sidebar .sidebar-header a img {
-  width: 100%;
-  height: 100%;
+  width: 50px;
+  height: 50px;
   object-fit: cover;
-  border-radius: 50%;
+  border-radius: 12px;
+  transition: all 0.4s ease;
+}
+
+.sidebar.close .sidebar-header a img {
+  opacity: 0;
 }
 
 .sidebar .sidebar-header .header-title {
@@ -73,6 +97,15 @@ body {
   font-weight: 600;
   border-radius: 50%;
   cursor: pointer;
+  transition: all 0.4s ease;
+}
+
+.sidebar.close .sidebar-header .icon-toggle {
+  width: 40px;
+  height: 40px;
+  transform: translate(50%, -50%);
+  right: 50%;
+  border-radius: 8px;
 }
 
 /*  nav-link */
@@ -91,15 +124,16 @@ body {
 .sidebar li .nav-box {
   position: relative;
   width: 100%;
-  height: 55px;
+  height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: all 0.4s ease;
 }
 
 .sidebar .sidebar-nav ul li .nav-box .arrow {
   position: absolute;
-  font-size: 25px;
+  font-size: 18px;
   top: 50%;
   right: 30px;
   transform: translateY(-50%);
@@ -109,9 +143,20 @@ body {
   transition: all 0.4s ease;
 }
 
-/* .sidebar .sidebar-nav ul li .nav-box .arrow:hover a {
-  color: var(--color-hover-primary);
-} */
+.nav-box:has(.arrow:hover) .nav-link {
+  background-color: var(--color-hover-primary);
+}
+
+.nav-box:has(.arrow:hover) .text,
+.nav-box:has(.arrow:hover) .icon,
+.nav-box:has(.arrow:hover) .arrow {
+  color: var(--color-bg-sidebar) !important;
+}
+
+.sidebar.close .arrow {
+  opacity: 0;
+  pointer-events: none;
+}
 
 .sidebar ul li .nav-link {
   width: 100%;
@@ -130,7 +175,7 @@ body {
 .sidebar li .nav-link:hover .text,
 .sidebar li .nav-link:hover .icon,
 .sidebar li .nav-link:hover ~ .arrow {
-  color: var(--color-bg-sidebar);
+  color: var(--color-bg-sidebar) !important;
 }
 
 .sidebar .nav-item .sub-menu {
@@ -138,8 +183,11 @@ body {
   position: relative;
   flex-direction: column;
   gap: 10px;
-  /* display: none; */
-  display: block;
+  display: none;
+}
+
+.sidebar .nav-item .sub-menu.show-sub-menu {
+  display: flex;
 }
 
 .sidebar .sub-menu li {
@@ -161,10 +209,6 @@ body {
 
 /* code toggle-switch */
 
-.mode {
-  padding-bottom: 10px;
-}
-
 .mode .toggle-switch {
   background-color: var(--color-border-hr);
   width: 100%;
@@ -184,7 +228,7 @@ body {
 
 .mode .moon-sun .icon {
   position: absolute;
-  font-size: 22px;
+  font-size: 20px;
   top: 50%;
   transform: translateY(-50%);
 }
@@ -192,7 +236,7 @@ body {
 .mode .toggle-switch .mode-switch {
   position: absolute;
   height: 100%;
-  min-width: 70px;
+  min-width: 80px;
   right: 0;
   display: flex;
   align-items: center;
@@ -220,6 +264,52 @@ body {
   left: 3px;
 }
 
-.mode .sun{
+.mode .sun {
   opacity: 0;
+}
+
+/* code text-container */
+.main-container {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+}
+
+.text-container {
+  position: relative;
+  left: 250px;
+  transition: all 0.4s ease;
+  background-color: var(--color-bg-secondary);
+  width: calc(100% - 250px);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+}
+
+.sidebar.close ~ .text-container {
+  left: 80px;
+  width: calc(100% - 80px);
+}
+
+.text-container .header {
+  background-color: white;
+  height: 62px;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  position: static;
+  width: 100%;
+}
+
+.text-container .main-body {
+  padding: 20px 10px 0px 10px;
+  width: 100%;
+  height: 100%;
+  flex: 1;
+  overflow: scroll;
+}
+
+.text-container .main-body p {
+  font-size: 50px;
 }
