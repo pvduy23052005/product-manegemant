@@ -303,12 +303,14 @@
   display: flex;
   align-items: center;
   flex-shrink: 0;
-  border-bottom: 1px solid #000;
+  border-bottom: 1px solid #0000004a ;
+  padding: 0px 40px ;
 }
 
 .sidebar.close ~ .header {
   left: 80px;
   width: calc(100% - 80px);
+
 }
 
 .text-container .main-body p {

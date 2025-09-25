@@ -11,6 +11,8 @@
   --color-hover-primary: #695cfe; /* màu hover chính */
   --color-hover-secondary: #e2e2fb; /* màu hover phụ */
   --color-shadow: rgba(0, 0, 0, 0.05); /* bóng đổ */
+
+  --color-button : #5D6EE7 ;
 }
 
 body.dark {

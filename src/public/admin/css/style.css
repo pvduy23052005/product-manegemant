@@ -1,0 +1,20 @@
+/* product */
+.box-menu{
+  display: flex;
+  align-items: center;
+  height:  50px;
+  background-color: var(--color-bg-sidebar);
+  width: 100%;
+  padding: 0px 20px ;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.box-menu a {
+  background-color: var(--color-button);
+  color : var(--color-bg-sidebar); 
+  padding: 5px 20px ;
+  border-radius: 5px;
+}
+
+/* product */
