@@ -1,0 +1,74 @@
+mixin box-item(listItem , title)
+  .container.mt-2
+    .container-wraper
+      .container-menu 
+        .row
+          .col-3
+            div(class = "box-menu") 
+              i(class = "fa-solid fa-magnifying-glass text")
+              input(type="text" class = "box-default text" placeholder = "Search") 
+          .col-3 
+            div(class = "box-menu")
+              select(name="" class = "box-default text")
+                option(value="" class = "box-default") -- Trạng thái -- 
+                option(value="active") Hoạt động 
+                option(value="inactive") Ngừng 
+
+          .col-3 
+            div(class = "box-menu")
+              select(name="" class = "box-default text")
+                option(value="" active class = "box-default text") -- Danh mục --
+
+          .col-3  
+            div(class = "box-menu box-menu-icon")
+              i(class = "fa-solid fa-rotate")
+      .container-header-item 
+        .row 
+          .col-1 
+            div 
+              input(type="checkbox" name="")
+          .col-3
+            div Tên + #{title} 
+          .col-2
+            div Ảnh  
+          .col-2
+            div giá 
+          .col-1
+            div Số lượng 
+          .col-1
+            div Ví trí 
+          .col-2  
+            div Trạng thái 
+      .container-list-item 
+        each item in listItem
+          .row.box-item
+            .col-1 
+              div 
+                input(type="checkbox" name="" data-id = item.id)
+            .col-3
+              div(class = "box-title") 
+                div.title #{item.title}
+                .box-sub-menu 
+                  a(class = "btn-revise" href = "/admin/item/edit") Sửa
+                  button(class = "btn-delete") Xóa
+                  button(class = "btn-active") Hoạt động 
+                  button(class = "btn-inactive") Ngừng hoạt động
+
+            .col-2
+              div 
+                img(src=item.thumbnail, alt=item.title)  
+            .col-2
+              div #{item.price} 
+            .col-1
+              div #{item.stock} 
+            .col-1
+              div #{item.position} 
+            .col-2  
+              div   
+                if item.status == "active"
+                  button(class = "status-item active") Hoạt động  
+                else 
+                  button(class = "status-item inactive") Ngừng hoạt động 
+
+
+
