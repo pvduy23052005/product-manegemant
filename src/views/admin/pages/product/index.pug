@@ -6,3 +6,9 @@ block main
   +header-menu("Tảo sản phẩm " , "/admin/product/create") 
 
   +box-item(listProduct , "sản phẩm")
+
+  form(action=""
+    method = "post"
+    data-path = "/admin/product/change-status"
+    id = "form-change-status"
+    ) 

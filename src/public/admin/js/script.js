@@ -23,3 +23,22 @@ if (body) {
     subMenu.classList.toggle("show-sub-menu");
   });
 }
+
+// code products
+const changeStatusForm = document.querySelector("#form-change-status");
+if (changeStatusForm) {
+  const listBtnChangeStatus = document.querySelectorAll("[change-status]");
+  listBtnChangeStatus.forEach((buttonChange) => {
+    buttonChange.addEventListener("click", (e) => {
+      e.preventDefault();
+      const stringStatus = buttonChange.getAttribute("change-status");
+      const [status, id] = stringStatus.split("-");
+      const newStatus = status == "active" ? "inactive" : "active";
+      const dataPath = changeStatusForm.getAttribute("data-path");
+      const action = `${dataPath}/${newStatus}/${id}?_method=PATCH`;
+
+      changeStatusForm.action = action;
+      changeStatusForm.submit();
+    });
+  });
+}

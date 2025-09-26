@@ -51,8 +51,12 @@ mixin box-item(listItem , title)
                 .box-sub-menu 
                   a(class = "btn-revise" href = "/admin/item/edit") Sửa
                   button(class = "btn-delete") Xóa
-                  button(class = "btn-active") Hoạt động 
-                  button(class = "btn-inactive") Ngừng hoạt động
+                  button(class = "btn-active"
+                    change-status = `${item.status}-${item.id}`
+                    ) Hoạt động 
+                  button(class = "btn-inactive"
+                    change-status = `${item.status}-${item.id}`
+                    ) Ngừng hoạt động
 
             .col-2
               div 
@@ -66,7 +70,7 @@ mixin box-item(listItem , title)
             .col-2  
               div   
                 if item.status == "active"
-                  button(class = "status-item active") Hoạt động  
+                  button(class = "status-item active ") Hoạt động  
                 else 
                   button(class = "status-item inactive") Ngừng hoạt động 
 
