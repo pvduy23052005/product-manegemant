@@ -1,4 +1,4 @@
-mixin box-item(listItem , title)
+mixin box-item(listItem , title , keySearch = "")
   .container.mt-2
     .container-wraper
       .container-menu 
@@ -6,7 +6,17 @@ mixin box-item(listItem , title)
           .col-3
             div(class = "box-menu") 
               i(class = "fa-solid fa-magnifying-glass text")
-              input(type="text" class = "box-default text" placeholder = "Search") 
+              form(
+                action=""
+                form-Search
+                )
+                input(
+                  type="text" 
+                  class = "box-default text" 
+                  placeholder = "Search"
+                  name = "keySearch"
+                  value = keySearch 
+                  ) 
           .col-3 
             div(class = "box-menu")
               select(name="" class = "box-default text")
@@ -22,13 +32,14 @@ mixin box-item(listItem , title)
           .col-3  
             div(class = "box-menu box-menu-icon")
               i(class = "fa-solid fa-rotate")
+              
       .container-header-item 
         .row 
           .col-1 
             div 
               input(type="checkbox" name="")
           .col-3
-            div Tên + #{title} 
+            div Tên #{title} 
           .col-2
             div Ảnh  
           .col-2

@@ -1,4 +1,5 @@
 const Product = require("../../models/product.model");
+const helperSearch = require("../../helpers/helperSerach");
 
 //[get] /admin/product
 module.exports.index = async (req, res) => {
@@ -6,11 +7,18 @@ module.exports.index = async (req, res) => {
     deleted: false,
   };
 
+  let objectSearch = helperSearch.helperSearch(req);
+
+  if (req.query.keySearch != "") {
+    find["title"] = objectSearch.title;
+  }
+
   const listProduct = await Product.find(find);
 
   res.render("admin/pages/product/index", {
     title: "Products",
     listProduct: listProduct,
+    keySearch: req.query.keySearch || "",
   });
 };
 

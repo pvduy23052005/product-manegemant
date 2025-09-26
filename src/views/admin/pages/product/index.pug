@@ -5,7 +5,7 @@ include ../../mixins/box-item.pug
 block main 
   +header-menu("Tảo sản phẩm " , "/admin/product/create") 
 
-  +box-item(listProduct , "sản phẩm")
+  +box-item(listProduct , "sản phẩm" ,  keySearch)
 
   form(action=""
     method = "post"

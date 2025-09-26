@@ -42,3 +42,21 @@ if (changeStatusForm) {
     });
   });
 }
+
+const formSearch = document.querySelector("[form-search]");
+if (formSearch) {
+  formSearch.addEventListener("submit", (e) => {
+    const url = new URL(window.location.href);
+    e.preventDefault();
+    const keyWord = e.target[0].value;
+    
+    if (keyWord) {
+      url.searchParams.set("keySearch", keyWord);
+    } else {
+      url.searchParams.delete("keySearch");
+    }
+    e.target[0].value = e.target[0].value.trim();
+    window.location.href = url.href;
+  });
+}
+// end code products
