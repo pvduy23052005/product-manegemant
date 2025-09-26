@@ -118,7 +118,6 @@
 .sidebar .sidebar-nav ul {
   display: flex;
   flex-direction: column;
-  gap: 5px;
 }
 
 .sidebar li .nav-box {
@@ -184,6 +183,8 @@
   flex-direction: column;
   gap: 10px;
   display: none;
+  padding: 0;
+  margin: 0;
 }
 
 .sidebar .nav-item .sub-menu.show-sub-menu {
@@ -208,6 +209,11 @@
 }
 
 /* code toggle-switch */
+
+.mode ul{
+  margin: 0;
+  padding : 0 ;
+}
 
 .mode .toggle-switch {
   background-color: var(--color-border-hr);
@@ -279,11 +285,13 @@
   position: relative;
   left: 250px;
   transition: all 0.4s ease;
-  background-color: var(--color-bg-secondary);
+  background-color: var(--color-bg-primary);
   width: calc(100% - 250px);
   display: flex;
-  height: 100%;
-  /* overflow-y: auto; */
+  min-height: 100vh;
+  flex-direction: column;
+  overflow-y: auto;
+  padding-bottom: 30px;
 }
 
 .sidebar.close ~ .text-container {
@@ -303,14 +311,13 @@
   display: flex;
   align-items: center;
   flex-shrink: 0;
-  border-bottom: 1px solid #0000004a ;
-  padding: 0px 40px ;
+  border-bottom: 1px solid #0000004a;
+  padding: 0px 40px;
 }
 
 .sidebar.close ~ .header {
   left: 80px;
   width: calc(100% - 80px);
-
 }
 
 .text-container .main-body p {

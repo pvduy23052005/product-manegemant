@@ -1,6 +1,79 @@
 extends ../../layout/layoutDefault.pug
+include ../../mixins/header-menu.pug
 
 block main 
-  .box-menu 
-    h4 Product
-    a(href="") create product 
+  +header-menu("Tảo sản phẩm " , "/admin/product/create") 
+
+  .container.mt-2
+    .container-wraper
+      .container-menu 
+        .row
+          .col-3
+            div(class = "box-menu") 
+              i(class = "fa-solid fa-magnifying-glass text")
+              input(type="text" class = "box-default text" placeholder = "Search") 
+          .col-3 
+            div(class = "box-menu")
+              select(name="" class = "box-default text")
+                option(value="" class = "box-default") -- Trạng thái -- 
+                option(value="active") Hoạt động 
+                option(value="inactive") Ngừng 
+
+          .col-3 
+            div(class = "box-menu")
+              select(name="" class = "box-default text")
+                option(value="" active class = "box-default text") -- Danh mục --
+
+          .col-3  
+            div(class = "box-menu box-menu-icon")
+              i(class = "fa-solid fa-rotate")
+      .container-header-item 
+        .row 
+          .col-1 
+            div 
+              input(type="checkbox" name="")
+          .col-3
+            div Tên sản phẩm  
+          .col-2
+            div Ảnh  
+          .col-2
+            div giá 
+          .col-1
+            div Số lượng 
+          .col-1
+            div Ví trí 
+          .col-2  
+            div Trạng thái 
+      .container-list-item 
+        each product in listProduct
+          .row.box-item
+            .col-1 
+              div 
+                input(type="checkbox" name="" data-id = product.id)
+            .col-3
+              div(class = "box-title") 
+                div.title #{product.title}
+                .box-sub-menu 
+                  a(class = "btn-revise" href = "/admin/product/edit") Sửa
+                  button(class = "btn-delete") Xóa
+                  button(class = "btn-active") Hoạt động 
+                  button(class = "btn-inactive") Ngừng hoạt động
+
+            .col-2
+              div 
+                img(src=product.thumbnail, alt=product.title)  
+            .col-2
+              div #{product.price} 
+            .col-1
+              div #{product.stock} 
+            .col-1
+              div #{product.position} 
+            .col-2  
+              div   
+                if product.status == "active"
+                  button(class = "status-item active") Hoạt động  
+                else 
+                  button(class = "status-item inactive") Ngừng hoạt động 
+
+
+
