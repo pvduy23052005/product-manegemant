@@ -10,10 +10,13 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "body-parser": "^2.2.0",
+    "cloudinary": "^2.7.0",
     "dotenv": "^17.2.2",
     "express": "^5.1.0",
     "method-override": "^3.0.0",
     "mongoose": "^8.18.2",
+    "multer": "^2.0.2",
     "pug": "^3.0.3"
   },
   "devDependencies": {

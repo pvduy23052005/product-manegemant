@@ -1,0 +1,78 @@
+extends ../../layout/layoutDefault.pug
+include ../../mixins/header-menu.pug
+
+block main
+  +header-menu("Tảo sản phẩm")
+
+  .container   
+    .card.mb-5.text-start.mt-4
+      .card-body
+        form(
+          method="POST",
+          action=`/admin/product/create`, 
+          id="form-edit-product"
+          enctype="multipart/form-data" 
+        )
+          .form-group.mb-3
+            label.mb-2(for="title") Tiêu đề sản phẩm
+            input(
+              type="text", 
+              class = "form-control" 
+              name="title" 
+              id="title", 
+              required  
+            )
+
+          .form-group.mb-3
+            label.mb-2(for="description") Mô tả
+            textarea(name="description", 
+              class = "form-control" id="description") 
+
+          .form-group.mb-3
+            label.mb-2(for="price") Giá sản phẩm
+            input(type="number", 
+              class = "form-control"
+              name="price" 
+              id="price", 
+              required,
+              min="0" 
+              step="0.01" )
+
+          .form-group.mb-3
+            label.mb-2(for="discountPercentage") Giảm giá (%)
+            input(type="number",
+              class = "form-control" name="discountPercentage" id="discountPercentage" min="0" max="100" step="0.01")
+
+          .form-group.mb-3
+            label.mb-2(for="stock") Số lượng tồn kho
+            input(type="number" ,
+              class = "form-control" 
+              name="stock" 
+              id="stock" 
+              min="0")
+
+          .form-group.mb-3
+            label.mb-2(for="thumbnail") Ảnh đại diện
+            input(type="file",
+              class = "form-control" 
+              name="thumbnail" 
+              id="thumbnail" 
+              accept="image/*")
+            img(src="", id = "preview" alt="" style="max-width: 150px; margin-top: 10px; border-radius : 12px ;")
+
+          .form-group.mb-3
+            label.mb-2(for="status") Trạng thái
+            select( class = "form-control" name="status" id="status")
+              option(value="active", ) Hoạt động
+              option(value="inactive",) Không hoạt động
+
+          .form-group.mb-4
+            label.mb-2(for="position") Vị trí hiển thị
+            input(type="number",
+              class = "form-control" 
+              name="position" 
+              id="position"
+              min="0" 
+              placeholder="Tự động tăng" )
+
+          button(type="submit" class = "button-box-menu") Tạo mới  

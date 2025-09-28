@@ -1,6 +1,7 @@
-mixin header-menu(title  , link)
+mixin header-menu(title  , link = "")
   .box-menu 
-    h4 Danh sách sản phẩm
-    a(href=link) 
-      i(class = "fa-solid fa-plus") 
-      span #{title}
+    h4 #{title}
+    if link != ""
+      a(href=link class = "button-box-menu") 
+        i(class = "fa-solid fa-plus") 
+        span #{title}

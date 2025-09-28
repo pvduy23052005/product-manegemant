@@ -13,7 +13,7 @@ module.exports.index = async (req, res) => {
     find["title"] = objectSearch.title;
   }
 
-  const listProduct = await Product.find(find);
+  const listProduct = await Product.find(find).sort({ createdAt: -1 });
 
   res.render("admin/pages/product/index", {
     title: "Products",
@@ -39,4 +39,22 @@ module.exports.changeStatus = async (req, res) => {
     const backgUrl = req.get("referer");
     res.redirect(backgUrl);
   } catch (error) {}
+};
+
+// [get] /admin/product/create
+module.exports.create = (req, res) => {
+  res.render("admin/pages/product/create", {
+    title: "Create Product",
+  });
+};
+
+// [post] /admin/product/create
+module.exports.createPost = (req, res) => {
+  try {
+    const newProduct = new Product(req.body);
+    newProduct.save();
+    res.redirect("/admin/product");
+  } catch (err) {
+    console.log(err);
+  }
 };

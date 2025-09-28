@@ -43,13 +43,14 @@ if (changeStatusForm) {
   });
 }
 
+// search products .
 const formSearch = document.querySelector("[form-search]");
 if (formSearch) {
   formSearch.addEventListener("submit", (e) => {
     const url = new URL(window.location.href);
     e.preventDefault();
     const keyWord = e.target[0].value;
-    
+
     if (keyWord) {
       url.searchParams.set("keySearch", keyWord);
     } else {
@@ -57,6 +58,20 @@ if (formSearch) {
     }
     e.target[0].value = e.target[0].value.trim();
     window.location.href = url.href;
+  });
+}
+
+// preview image
+const inputThumbnail = document.querySelector("#thumbnail");
+if (inputThumbnail) {
+  inputThumbnail.addEventListener("change", (e) => {
+    const preivewImage = document.querySelector("#preview");
+    const file = e.target.files[0];
+    if (file) {
+      preivewImage.src = URL.createObjectURL(file);
+    } else {
+      preivewImage.src = "";
+    }
   });
 }
 // end code products
