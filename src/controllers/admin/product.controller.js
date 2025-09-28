@@ -49,9 +49,16 @@ module.exports.create = (req, res) => {
 };
 
 // [post] /admin/product/create
-module.exports.createPost = (req, res) => {
+module.exports.createPost = async (req, res) => {
   try {
+    if (req.body.position == "") {
+      req.body.position = await Product.countDocuments(find);
+    } else {
+      req.body.position = parseInt(req.body.position);
+    }
+
     const newProduct = new Product(req.body);
+
     newProduct.save();
     res.redirect("/admin/product");
   } catch (err) {
