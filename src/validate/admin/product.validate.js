@@ -1,4 +1,4 @@
-module.exports = (req, req, next) => {
+module.exports = (req, res, next) => {
   if (!req.body.title) {
     const backgUrl = req.get("referer");
     res.redirect(backgUrl);

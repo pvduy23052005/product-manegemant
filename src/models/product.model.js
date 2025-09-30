@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const slug = require("mongoose-slug-updater");
 
 const productSchema = new mongoose.Schema(
   {
@@ -39,6 +40,12 @@ const productSchema = new mongoose.Schema(
     deleted: {
       type: Boolean,
       default: false,
+    },
+    slug: {
+      type: String,
+      slug: "title",
+      unique: true,
+      slugPaddingSize: 4, // Thêm số nếu trùng (ví dụ: san-pham-0001)
     },
   },
   {
