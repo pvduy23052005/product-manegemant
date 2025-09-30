@@ -1,8 +1,11 @@
 extends ../../layout/layoutDefault.pug
 include ../../mixins/header-menu.pug
+include ../../mixins/box-alert.pug
 
 block main
   +header-menu("Tảo sản phẩm")
+
+  +box-alert-warning(5000)
 
   .container   
     .card.mb-5.text-start.mt-4
@@ -20,7 +23,6 @@ block main
               class = "form-control" 
               name="title" 
               id="title", 
-              required  
             )
 
           .form-group.mb-3
@@ -34,7 +36,6 @@ block main
               class = "form-control"
               name="price" 
               id="price", 
-              required,
               min="0" 
               step="0.01" )
 

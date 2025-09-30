@@ -1,0 +1,30 @@
+mixin box-alert-success(time = 5000 )
+  if success.length > 0 
+    div(
+      class = "show-alert success  "
+      show-alert
+      data-time = time
+    )
+      span #{success}
+      i(class="fa-solid fa-delete-left" close-alert)
+
+
+mixin box-alert-error(time = 5000 )
+  if error.length > 0  
+    div(
+      class = "show-alert warning "
+      show-alert
+      data-time = time
+    )
+      span #{error}
+      i(class="fa-solid fa-delete-left" close-alert)
+
+mixin box-alert-warning(time = 5000 )
+  if  warning.length  > 0 
+    div(
+      class = "show-alert success warning"
+      show-alert
+      data-time = time
+    )
+      span #{warning}
+      i(class="fa-solid fa-delete-left" close-alert)

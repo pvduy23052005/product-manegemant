@@ -38,7 +38,9 @@ module.exports.changeStatus = async (req, res) => {
     );
     const backgUrl = req.get("referer");
     res.redirect(backgUrl);
-  } catch (error) {}
+  } catch (error) {
+    consle.log(error);
+  }
 };
 
 // [get] /admin/product/create
@@ -52,6 +54,10 @@ module.exports.create = (req, res) => {
 module.exports.createPost = async (req, res) => {
   try {
     if (req.body.position == "") {
+      let find = {
+        deleted: false,
+        status: "active",
+      };
       req.body.position = await Product.countDocuments(find);
     } else {
       req.body.position = parseInt(req.body.position);
@@ -59,9 +65,11 @@ module.exports.createPost = async (req, res) => {
 
     const newProduct = new Product(req.body);
 
-    newProduct.save();
-    res.redirect("/admin/product");
-  } catch (err) {
-    console.log(err);
+    await newProduct.save();
+
+    req.flash("success", "Thêm mới thành công!");
+  } catch (error) {
+    req.flash("error", "Lỗi mạng!");
   }
+  res.redirect("/admin/product");
 };

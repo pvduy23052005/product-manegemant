@@ -177,3 +177,39 @@ a {
   height: 40px;
   cursor: pointer;
 }
+
+/* css show alert */
+.show-alert {
+  background-color: rgb(169, 232, 74);
+  position: sticky;
+  color: var(--color-bg-sidebar);
+  font-size: 16px;
+  padding: 8px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  top: 0;
+  opacity: 1;
+}
+
+.show-alert [close-alert]{
+  cursor: pointer;
+}
+
+.show-alert.success {
+  background-color: rgb(169, 232, 74);
+}
+
+.show-alert.warning{
+  background-color: rgba(232, 232, 56, 0.965);
+}
+
+.show-alert.error{
+  background-color: rgb(221, 58, 58);
+}
+
+.show-alert.close-alert{
+  display: none;
+}
+
+/* end css show alert */

@@ -23,7 +23,6 @@ module.exports.uploadSingle = (fieldName) => {
 
         // Lưu URL vào req để controller dùng
         req.body.thumbnail = result.secure_url;
-
         next();
       } catch (err) {
         console.error("Upload error:", err);
