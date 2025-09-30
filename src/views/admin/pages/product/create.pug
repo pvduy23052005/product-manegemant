@@ -7,7 +7,7 @@ block main
 
   +box-alert-warning(5000)
 
-  .container   
+  .container
     .card.mb-5.text-start.mt-4
       .card-body
         form(
@@ -23,6 +23,7 @@ block main
               class = "form-control" 
               name="title" 
               id="title", 
+              required
             )
 
           .form-group.mb-3
@@ -37,7 +38,9 @@ block main
               name="price" 
               id="price", 
               min="0" 
-              step="0.01" )
+              step="0.01" 
+              required
+              )
 
           .form-group.mb-3
             label.mb-2(for="discountPercentage") Giảm giá (%)
