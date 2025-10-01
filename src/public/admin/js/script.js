@@ -90,3 +90,25 @@ if (showAlert) {
   });
 }
 // show alert .
+
+// select-change-status.
+const selectChangeStatus = document.querySelector("[select-change-status]");
+if (selectChangeStatus) {
+  const url = new URL(window.location.href);
+  selectChangeStatus.addEventListener("change", (e) => {
+    const changeStatus = e.target.value;
+    if (changeStatus != "") {
+      url.searchParams.set("status", changeStatus);
+    } else {
+      url.searchParams.delete("status");
+    }
+    window.location.href = url.href;
+  });
+
+  // Khi load lại trang → giữ option theo query param
+  const currentStatus = url.searchParams.get("status");
+  if (currentStatus) {
+    selectChangeStatus.value = currentStatus;
+  } 
+}
+// end select-change-status.

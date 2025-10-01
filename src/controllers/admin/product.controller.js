@@ -3,9 +3,14 @@ const helperSearch = require("../../helpers/helperSerach");
 
 //[get] /admin/product
 module.exports.index = async (req, res) => {
+  const status = req.query.status;
   let find = {
     deleted: false,
   };
+
+  if(status){
+    find["status"] = status ; 
+  }
 
   let objectSearch = helperSearch.helperSearch(req);
 
@@ -36,9 +41,11 @@ module.exports.changeStatus = async (req, res) => {
         status: status,
       }
     );
+    req.flash("success", "Thanh đổi thành công!");
     const backgUrl = req.get("referer");
     res.redirect(backgUrl);
   } catch (error) {
+    req.flash("erorr", "Thanh đổi thất bại vui lòng thư lại!");
     consle.log(error);
   }
 };

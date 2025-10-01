@@ -19,8 +19,8 @@ mixin box-item(listItem , title , keySearch = "")
                   ) 
           .col-3 
             div(class = "box-menu")
-              select(name="" class = "box-default text")
-                option(value="" class = "box-default") -- Trạng thái -- 
+              select(name="" class = "box-default text" select-change-status)
+                option(value="") -- Trạng thái -- 
                 option(value="active") Hoạt động 
                 option(value="inactive") Ngừng 
 
