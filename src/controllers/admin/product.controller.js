@@ -8,8 +8,8 @@ module.exports.index = async (req, res) => {
     deleted: false,
   };
 
-  if(status){
-    find["status"] = status ; 
+  if (status) {
+    find["status"] = status;
   }
 
   let objectSearch = helperSearch.helperSearch(req);
@@ -79,4 +79,52 @@ module.exports.createPost = async (req, res) => {
     req.flash("error", "Lỗi mạng!");
   }
   res.redirect("/admin/product");
+};
+
+// [get] /admin/product/edit/:id ;
+module.exports.edit = async (req, res) => {
+  const idProduct = req.params.id;
+
+  let find = {
+    _id: idProduct,
+    deleted: false,
+  };
+
+  const product = await Product.findOne(find);
+
+  res.render("admin/pages/product/edit", {
+    title: "edit product",
+    product: product,
+  });
+};
+
+// [patch] /admin/product/edit/:id ;
+module.exports.editPatch = async (req, res) => {
+  const idProduct = req.params.id;
+
+  try {
+    req.body.price = parseInt(req.body.price);
+    req.body.stock = parseInt(req.body.stock);
+    
+    if (req.body.position == "") {
+      let find = {
+        deleted: false,
+        status: "active",
+      };
+      req.body.position = await Product.countDocuments(find);
+    } else {
+      req.body.position = parseInt(req.body.position);
+    }
+
+    await Product.updateOne(
+      {
+        _id: idProduct,
+      },
+      req.body
+    );
+    req.flash("success", "Cập nhật thành công!");
+  } catch (error) {
+    req.flash("error", "Cập nhật thất bại!");
+  }
+  res.redirect("/admin/product/edit/" + idProduct);
 };

@@ -17,4 +17,13 @@ router.post(
   controller.createPost
 );
 
+router.get("/edit/:id", controller.edit);
+
+router.patch(
+  "/edit/:id",
+  upload.uploadSingle("thumbnail"),
+  productValidate,
+  controller.editPatch
+);
+
 module.exports = router;
