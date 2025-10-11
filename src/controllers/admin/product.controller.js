@@ -105,7 +105,7 @@ module.exports.editPatch = async (req, res) => {
   try {
     req.body.price = parseInt(req.body.price);
     req.body.stock = parseInt(req.body.stock);
-    
+
     if (req.body.position == "") {
       let find = {
         deleted: false,
@@ -127,4 +127,28 @@ module.exports.editPatch = async (req, res) => {
     req.flash("error", "Cập nhật thất bại!");
   }
   res.redirect("/admin/product/edit/" + idProduct);
+};
+
+// [delete] /admin/product/delete/:id
+module.exports.delete = async (req, res) => {
+  const idProduct = req.params.id;
+  const product = await Product.findOne({ _id: idProduct }).select("title");
+
+  try {
+
+    await Product.updateOne(
+      {
+        _id: idProduct,
+      },
+      {
+        deleted: tre,
+      }
+    );
+    req.flash("success", `Xóa thành công ${product.title} !`);
+  } catch (error) {
+    console.log(error);
+    req.flash(`error", "Xóa thất bại ${product.title} !`);
+  }
+
+  res.redirect("/admin/product");
 };

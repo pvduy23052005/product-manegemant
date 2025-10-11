@@ -60,7 +60,10 @@ mixin box-item(listItem , title , keySearch = "")
                 div.title #{item.title}
                 .box-sub-menu 
                   a(class = "btn-revise" href = "/admin/product/edit/" + item.id) Sửa
-                  button(class = "btn-delete") Xóa
+                  button(class = "btn-delete"
+                    data-id = item.id
+                    data-title = item.title
+                    ) Xóa
                   button(class = "btn-active"
                     change-status = `${item.status}-${item.id}`
                     ) Hoạt động 

@@ -109,6 +109,28 @@ if (selectChangeStatus) {
   const currentStatus = url.searchParams.get("status");
   if (currentStatus) {
     selectChangeStatus.value = currentStatus;
-  } 
+  }
 }
 // end select-change-status.
+
+// delete product .
+const listBtnDelete = document.querySelectorAll(".btn-delete");
+if (listBtnDelete) {
+  listBtnDelete.forEach((button) => {
+    button.addEventListener("click", (e) => {
+      const idProduct = button.getAttribute("data-id");
+      const titleProduct = button.getAttribute("data-title");
+
+      const checked = window.confirm(`Bạn có muốn xóa ${titleProduct}!`);
+
+      if (checked == true) {
+        const formDelete = document.querySelector("#form-delete");
+        const path = formDelete.getAttribute("data-path");
+        const action = `${path}/${idProduct}?_method=DELETE`;
+        formDelete.action = action;
+        formDelete.submit();
+      }
+    });
+  });
+}
+// end delete product .
