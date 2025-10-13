@@ -22,3 +22,14 @@ block main
     data-path = "/admin/product/delete"
     id = "form-delete"
     )
+
+  form(
+    action="/admin/product/change-multi?_method=PATCH", 
+    method="post"
+    id = "form-change-multi"
+  ) 
+    input(
+      type = "text"
+      name = "listIdItem"
+      class  = "d-none"
+    )

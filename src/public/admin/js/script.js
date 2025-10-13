@@ -134,3 +134,87 @@ if (listBtnDelete) {
   });
 }
 // end delete product .
+
+// action multiple .
+const formChangeMulti = document.querySelector("#form-change-multi");
+
+if (formChangeMulti) {
+  const actionMultiple = document.querySelector("[select-change-multiple]");
+  const url = new URL(window.location.href);
+  actionMultiple.addEventListener("change", (e) => {
+    e.preventDefault();
+    const statusChange = e.target.value;
+    const containerListItem = document.querySelector(".container-list-item");
+    const listItem = containerListItem.querySelectorAll(
+      "input[name='id']:checked"
+    );
+    const valueInput = formChangeMulti.querySelector(
+      "input[name='listIdItem']"
+    );
+
+    if (!statusChange) {
+      return;
+    }
+
+    if (listItem.length == 0) {
+      window.alert("Bản chửa chọn bản ghi nào!");
+      window.location.href = url;
+      return;
+    }
+
+    if (statusChange == "delete") {
+      const isConfirm = window.confirm("Bạn có chắc muôn xóa không");
+      if (isConfirm == false) {
+        return;
+      }
+    }
+
+    let listIdItem = {};
+    let listId = [];
+    listItem.forEach((element) => {
+      const idItem = element.getAttribute("data-id");
+      listId.push(idItem);
+    });
+    listIdItem["listId"] = listId;
+    listIdItem["statusChange"] = statusChange;
+
+    //conver object to json .
+    valueInput.value = JSON.stringify(listIdItem);
+    formChangeMulti.submit();
+  });
+}
+
+const containerHeader = document.querySelector(".container-header-item ");
+if (containerHeader) {
+  const inputCheckAll = containerHeader.querySelector(
+    "input[name='check-all']"
+  );
+  const listInputCheck = document.querySelectorAll("input[name='id']");
+  inputCheckAll.addEventListener("change", (e) => {
+    e.preventDefault();
+    if (inputCheckAll.checked == true) {
+      listInputCheck.forEach((item) => {
+        item.checked = true;
+      });
+    } else {
+      listInputCheck.forEach((item) => {
+        item.checked = false;
+      });
+    }
+
+    listInputCheck.forEach((item) => {
+      item.addEventListener("click", () => {
+        const inputChecked = document.querySelectorAll(
+          "input[name=id]:checked"
+        ).length;
+        if (inputChecked === listInputCheck.length) {
+          inputCheckAll.checked = true;
+        } else {
+          inputCheckAll.checked = false;
+        }
+      });
+    });
+  });
+}
+
+// end action multiple .

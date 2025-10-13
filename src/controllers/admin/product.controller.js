@@ -135,7 +135,6 @@ module.exports.delete = async (req, res) => {
   const product = await Product.findOne({ _id: idProduct }).select("title");
 
   try {
-
     await Product.updateOne(
       {
         _id: idProduct,
@@ -150,5 +149,40 @@ module.exports.delete = async (req, res) => {
     req.flash(`error", "Xóa thất bại ${product.title} !`);
   }
 
+  res.redirect("/admin/product");
+};
+
+// [patch] /admin/product/change-multi
+module.exports.changeMulti = async (req, res) => {
+  try {
+    // conver json to object.
+    const listIdItem = JSON.parse(req.body.listIdItem);
+    const { listId, statusChange } = listIdItem;
+
+    switch (statusChange) {
+      case "active":
+        await Product.updateMany(
+          { _id: { $in: listId } },
+          { status: statusChange }
+        );
+        req.flash("success", `Đã thay đổi trạng thái  sản phẩm thành công! `);
+        break;
+      case "delete":
+        await Product.updateMany({ _id: { $in: listId } }, { deleted: true });
+        req.flash("success", `Đã thay đổi trạng thái  sản phẩm thành công! `);
+        break;
+      case "inactive":
+        await Product.updateMany(
+          { _id: { $in: listId } },
+          { status: statusChange }
+        );
+        req.flash("success", `Đã thay đổi trạng thái  sản phẩm thành công! `);
+        break;
+      default:
+        break;
+    }
+  } catch (error) {
+    req.flash("error", "Bạn vui lòng thử lại!");
+  }
   res.redirect("/admin/product");
 };
