@@ -7,7 +7,14 @@ if (body) {
 
   if (localStorage.getItem("closeSidebar") == "close") {
     sidebar.classList.add("close");
+
   }
+
+  if (localStorage.getItem("showSubMenu") == "show-sub-menu") {
+    subMenu.classList.add("show-sub-menu");
+  }
+
+
 
   toggleSwitch.addEventListener("click", () => {
     sidebar.classList.toggle("close");
@@ -21,6 +28,13 @@ if (body) {
 
   downArrow.addEventListener("click", () => {
     subMenu.classList.toggle("show-sub-menu");
+
+    if (subMenu.classList.contains("show-sub-menu")) {
+      localStorage.setItem("showSubMenu", "show-sub-menu");
+    } else {
+      localStorage.setItem("showSubMenu", "close-sub-menu");
+    }
+    
   });
 }
 

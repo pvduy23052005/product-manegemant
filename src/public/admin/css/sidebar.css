@@ -191,6 +191,11 @@
   display: flex;
 }
 
+.sidebar .nav-item .sub-menu.close-sub-menu{
+  display: none;
+}
+
+
 .sidebar .sub-menu li {
   width: 100%;
 }
