@@ -7,14 +7,11 @@ if (body) {
 
   if (localStorage.getItem("closeSidebar") == "close") {
     sidebar.classList.add("close");
-
   }
 
   if (localStorage.getItem("showSubMenu") == "show-sub-menu") {
     subMenu.classList.add("show-sub-menu");
   }
-
-
 
   toggleSwitch.addEventListener("click", () => {
     sidebar.classList.toggle("close");
@@ -34,7 +31,6 @@ if (body) {
     } else {
       localStorage.setItem("showSubMenu", "close-sub-menu");
     }
-    
   });
 }
 
@@ -230,5 +226,4 @@ if (containerHeader) {
     });
   });
 }
-
 // end action multiple .

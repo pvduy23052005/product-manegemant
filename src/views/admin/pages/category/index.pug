@@ -9,6 +9,13 @@ block main
   +box-alert-success(5000)
   +box-alert-error(5000)
 
-  +box-item-category(categories , "category" )
+  +box-item-category(categories )
+
+  form(action="",
+    method="post"
+    id = "form-change-status",
+    data-path = "/admin/category/change-status"
+  )
+
 
 
