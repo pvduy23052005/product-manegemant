@@ -17,5 +17,14 @@ block main
     data-path = "/admin/category/change-status"
   )
 
-
+  form(
+    action="/admin/category/change-multi?_method=PATCH",
+    method="post"
+    id = "form-change-multi",
+  )
+    input(
+      type="text"
+      name = "listIdItem"
+      class = "d-none"
+      )
 
