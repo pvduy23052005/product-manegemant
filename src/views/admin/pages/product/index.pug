@@ -4,12 +4,12 @@ include ../../mixins/box-item.pug
 include ../../mixins/box-alert.pug
 
 block main 
-  +header-menu("Tảo sản phẩm " , "/admin/product/create") 
+  +header-menu("Danh sách sản phẩm" , "/admin/product/create") 
 
   +box-alert-success(5000)
   +box-alert-error(5000)
 
-  +box-item(listProduct , "sản phẩm" ,  keySearch)
+  +box-item(listProduct ,"product" ,"sản phẩm" ,  keySearch)
 
   form(action=""
     method = "post"

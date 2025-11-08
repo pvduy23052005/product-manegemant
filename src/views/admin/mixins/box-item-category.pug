@@ -1,4 +1,4 @@
-mixin box-item(listItem  , title , keySearch = "")
+mixin box-item-category(listItem , keySearch = "")
   .container.mt-2
     .container-wraper
       .container-menu 
@@ -53,14 +53,10 @@ mixin box-item(listItem  , title , keySearch = "")
           .col-1 
             div 
               input(type="checkbox" name="check-all")
-          .col-3
+          .col-4
             div Tên #{title} 
           .col-2
-            div Ảnh  
-          .col-2
-            div giá 
-          .col-1
-            div Số lượng 
+            div Ảnh 
           .col-1
             div Ví trí 
           .col-2  
@@ -75,11 +71,11 @@ mixin box-item(listItem  , title , keySearch = "")
                   name = "id" 
                   data-id = item.id
                 )
-            .col-3
+            .col-4
               div(class = "box-title") 
                 div.title #{item.title}
                 .box-sub-menu 
-                  a(class = "btn-revise" href = `/admin/product/edit/` + item.id) Sửa
+                  a(class = "btn-revise" href = `/admin/category/edit/` + item.id) Sửa
                   button(class = "btn-delete"
                     data-id = item.id
                     data-title = item.title
@@ -90,14 +86,9 @@ mixin box-item(listItem  , title , keySearch = "")
                   button(class = "btn-inactive"
                     change-status = `${item.status}-${item.id}`
                     ) Ngừng hoạt động
-
             .col-2
               div 
                 img(src=item.thumbnail, alt=item.title)  
-            .col-2
-              div #{item.price} 
-            .col-1
-              div #{item.stock} 
             .col-1
               div #{item.position} 
             .col-2  

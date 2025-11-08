@@ -1,0 +1,14 @@
+extends ../../layout/layoutDefault.pug
+include ../../mixins/header-menu.pug
+include ../../mixins/box-item-category.pug
+include ../../mixins/box-alert.pug
+
+block main 
+  +header-menu("Danh sách danh mục" , "/admin/category/create") 
+
+  +box-alert-success(5000)
+  +box-alert-error(5000)
+
+  +box-item-category(categories , "category" )
+
+
