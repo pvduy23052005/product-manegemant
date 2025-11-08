@@ -1,10 +1,20 @@
 const Category = require("../../models/category.model");
+const helperSearch = require("../../helpers/helperSerach");
 
 //[get] /admin/categor
 module.exports.index = async (req, res) => {
+  const status = req.query.status;
+
   let find = {
     deleted: false,
   };
+  if (status) {
+    find["status"] = status;
+  }
+  let objectSearch = helperSearch.helperSearch(req);
+  if (!req.query.keySeach) {
+    find["title"] = objectSearch.title;
+  }
 
   const categories = await Category.find(find);
 
@@ -35,7 +45,7 @@ module.exports.changeStatus = async (req, res) => {
   res.redirect("/admin/category");
 };
 
-//[patch] /admin/category
+//[patch] /admin/category/change-multi
 module.exports.changeMulti = async (req, res) => {
   const listIdItem = JSON.parse(req.body.listIdItem);
 
