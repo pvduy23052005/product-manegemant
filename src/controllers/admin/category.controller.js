@@ -16,7 +16,7 @@ module.exports.index = async (req, res) => {
     find["title"] = objectSearch.title;
   }
 
-  const categories = await Category.find(find);
+  const categories = await Category.find(find).sort({ createdAt: -1 });
 
   res.render("admin/pages/category/index", {
     title: "Category",
@@ -89,6 +89,39 @@ module.exports.changeMulti = async (req, res) => {
         req.flash("error", "Vui lòng chọn hành động");
         break;
     }
+  } catch (error) {
+    req.flash("error", "Vui lòng thử lại");
+  }
+  res.redirect("/admin/category");
+};
+
+//[get] /admin/category/create.
+module.exports.create = async (req, res) => {
+  let find = {
+    deleted: false,
+  };
+  const categories = await Category.find(find).select("title");
+
+  res.render("admin/pages/category/create", {
+    title: "Create Category",
+    categories,
+  });
+};
+
+//[post] /admin/category/create.
+module.exports.createPost = async (req, res) => {
+  try {
+    const newCategory = new Category(req.body);
+
+    const countCategory = await Category.countDocuments();
+    if (newCategory.position) {
+      newCategory.position = parseInt(newCategory.position);
+    } else {
+      newCategory.position = countCategory + 1;
+    }
+
+    await newCategory.save();
+    req.flash("success", "Tạo mới danh mục thành công");
   } catch (error) {
     req.flash("error", "Vui lòng thử lại");
   }
