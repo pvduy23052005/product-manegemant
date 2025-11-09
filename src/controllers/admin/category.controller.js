@@ -127,3 +127,23 @@ module.exports.createPost = async (req, res) => {
   }
   res.redirect("/admin/category");
 };
+
+//[delete] /admin/category/delete.
+module.exports.delete = async (req, res) => {
+  const id = req.params.id;
+
+  try {
+    await Category.updateOne(
+      {
+        _id: id,
+      },
+      {
+        deleted: true,
+      }
+    );
+    req.flash("success", "Xóa danh mục thành công");
+  } catch (error) {
+    req.flash("error", "Vui lòng thử lại");
+  }
+  res.redirect("/admin/category");
+};

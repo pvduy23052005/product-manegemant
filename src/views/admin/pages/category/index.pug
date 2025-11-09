@@ -18,6 +18,13 @@ block main
   )
 
   form(
+    action="", 
+    data-path = "/admin/category/delete",
+    id = "form-delete",
+    method="post"
+    ) 
+
+  form(
     action="/admin/category/change-multi?_method=PATCH",
     method="post"
     id = "form-change-multi",

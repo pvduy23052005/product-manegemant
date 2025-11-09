@@ -13,4 +13,6 @@ router.get("/create", controller.create);
 
 router.post("/create", upload.uploadSingle("thumbnail"), controller.createPost);
 
+router.delete("/delete/:id", controller.delete);
+
 module.exports = router;
