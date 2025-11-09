@@ -21,6 +21,7 @@ module.exports.index = async (req, res) => {
   res.render("admin/pages/category/index", {
     title: "Category",
     categories: categories,
+    keySearch : req.query.keySeach || "",
   });
 };
 

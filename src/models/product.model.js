@@ -8,6 +8,9 @@ const productSchema = new mongoose.Schema(
       required: true,
       trim: true, // tuy chỉnh khoảng trắng ở đầu và cuối
     },
+    category:{
+      type: String,
+    },
     description: {
       type: String,
       trim: true,

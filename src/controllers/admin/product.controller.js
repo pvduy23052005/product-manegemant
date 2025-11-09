@@ -1,5 +1,6 @@
 const Product = require("../../models/product.model");
 const helperSearch = require("../../helpers/helperSerach");
+const Category = require("../../models/category.model");
 
 //[get] /admin/product
 module.exports.index = async (req, res) => {
@@ -51,9 +52,14 @@ module.exports.changeStatus = async (req, res) => {
 };
 
 // [get] /admin/product/create
-module.exports.create = (req, res) => {
+module.exports.create = async (req, res) => {
+  let find = {
+    deleted: false,
+  };
+  const categories = await Category.find(find).sort({ createdAt: -1 });
   res.render("admin/pages/product/create", {
     title: "Create Product",
+    categories: categories,
   });
 };
 

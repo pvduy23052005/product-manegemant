@@ -14,7 +14,7 @@ block main
           method="POST",
           action=`/admin/product/create`, 
           id="form-edit-product"
-          enctype="multipart/form-data" 
+          enctype="multipart/form-data"
         )
           .form-group.mb-3
             label.mb-2(for="title") Tiêu đề sản phẩm
@@ -25,6 +25,13 @@ block main
               id="title", 
               required
             )
+
+          .form-group.mb-3 
+            label.mb-2(for="category") Danh mục sản phẩm
+            select(class = "form-control" name="category" id="category" required)
+              option(value="" disabled selected) -- Chọn danh mục --
+              each category in categories
+                option(value=category.id) #{category.title}
 
           .form-group.mb-3
             label.mb-2(for="description") Mô tả
