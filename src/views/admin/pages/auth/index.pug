@@ -1,0 +1,25 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+
+    link(rel="stylesheet" href="/admin/css/auth.css")
+    title #{title}
+  body 
+    .container  
+      h1 Đăng nhập
+      .form-login 
+        form(
+          action="/admin/auth/login", 
+          method="post"
+            ) 
+            .input-group
+              input(type="text" id ="fullName" class = "input-control" required) 
+              label(for="fullName" class = "text-label" ) Tài khoản
+            .input-group 
+              input(type="password" id ="password"  class = "input-control" required)
+              label(for="password" class = "text-label" ) Mật khẩu
+            button() Login
+
+    script(src="/admin/js/auth.js") 
