@@ -211,5 +211,11 @@ a {
 .show-alert.close-alert{
   display: none;
 }
-
 /* end css show alert */
+
+/* css role */
+.card{
+  border : none;
+  border-radius: none;
+}
+/* end css role */
