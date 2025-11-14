@@ -1,9 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const controller = require("../../controllers/admin/auth.controller");
+const controller = require("../../controllers/admin/account.controller");
 
 router.get("/", controller.index);
-
-router.post("/login", controller.loginPost);
 
 module.exports = router;
