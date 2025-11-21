@@ -1,7 +1,7 @@
 const Account = require("../../models/account.model");
 const md5 = require("md5");
 
-//[get] /admin/auth
+//[get] /admin/auth/login
 module.exports.index = (req, res) => {
   res.render("admin/pages/auth/index");
 };
@@ -33,5 +33,10 @@ module.exports.loginPost = async (req, res) => {
     return;
   }
 
-  res.redirect("/admin");
+  res.cookie("token", checkEmail.token, {
+    maxAge: 24 * 60 * 60 * 1000, // 1 day .
+    httpOnly: true,
+  });
+
+  res.redirect("/admin/dashboard");
 };

@@ -8,6 +8,7 @@ const bodyParser = require("body-parser");
 require("dotenv").config(); // load biến từ .env
 const session = require("express-session");
 const flash = require("express-flash"); // Import express-flash
+const cookieParser = require("cookie-parser");
 
 const app = express();
 const port = process.env.PORT;
@@ -23,6 +24,7 @@ app.use(
   "/tinymce",
   express.static(path.join(__dirname, ".", "node_modules", "tinymce"))
 );
+app.use(cookieParser());
 
 app.use(
   session({
