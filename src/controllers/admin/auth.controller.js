@@ -40,3 +40,10 @@ module.exports.loginPost = async (req, res) => {
 
   res.redirect("/admin/dashboard");
 };
+
+//[get] /admin/auth/logout
+module.exports.logout = async (req, res) => {
+  res.clearCookie("token");
+
+  res.redirect("/admin/auth/login");
+};
