@@ -3,13 +3,19 @@ include ../../mixins/box-alert.pug
 include ../../mixins/box-role.pug
 
 block main 
+
   +box-alert-success(5000)
   +box-alert-error(5000)
+
   .box-menu 
     h4 #{title}
     if link != ""
-      a( class = "button-box-menu" button-submit) 
+      a( class = "button-box-menu" button-submit-permission) 
         | Cập nhật 
+  
+  div(
+    data-permission = roles
+  )
 
   .container.mt-2
     .container-wraper
@@ -23,17 +29,29 @@ block main
                 input(
                   name-id = role.id
                   type="text" 
-                  hidden  
+                  value = role.id
+                  hidden
                   )
         .card-body 
           .row 
             .col-4.text-start
               span Chọn tất cả
             .col-4.text-center 
-              input(type="checkbox" name="")
+              input(type="checkbox" name="" checkAll)
             .col-4.text-center 
-              input(type="checkbox" name="")
-
+              input(type="checkbox" name="" checkAll)
+    div(role-permission)
       +box-role(roles , "product" , "Sản phẩm")
 
       +box-role(roles , "product-category" , "Danh mục Sản phẩm")
+
+  form(
+    id = "form-permission" ,
+    method="post"
+    action = "/admin/role/permission?_method=PATCH"
+    ) 
+      input(type="text"
+      name = "permissions"
+      input-permissions
+      hidden 
+      )

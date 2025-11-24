@@ -227,3 +227,94 @@ if (containerHeader) {
   });
 }
 // end action multiple .
+
+// role permission
+const rolePermission = document.querySelector("[role-permission]");
+if (rolePermission) {
+  const btnSubmit = document.querySelector("[button-submit-permission]");
+  const formSubmit = document.querySelector("#form-permission");
+  const listPermissionId = document.querySelectorAll("[name-id]");
+  const listCheckAll = document.querySelectorAll("input[checkAll]");
+  const columnPermissions = document.querySelectorAll("[data-name]");
+
+  listCheckAll.forEach((roleId, index) => {
+    roleId.addEventListener("change", (e) => {
+      if (roleId.checked) {
+        columnPermissions.forEach((permissions) => {
+          const inputCheck = permissions.querySelectorAll(
+            "input[type='checkbox']"
+          )[index];
+          inputCheck.checked = true;
+        });
+      } else {
+        columnPermissions.forEach((permissions) => {
+          const inputCheck = permissions.querySelectorAll(
+            "input[type='checkbox']"
+          )[index];
+          inputCheck.checked = false;
+        });
+      }
+    });
+  });
+
+  btnSubmit.addEventListener("click", (e) => {
+    e.preventDefault();
+    let = listPermissions = [];
+    // select id role .
+    listPermissionId.forEach((roleId) => {
+      const id = roleId.getAttribute("name-id");
+      listPermissions.push({
+        roleId: id,
+        permissions: [],
+      });
+    });
+    // loc qua cac hang .
+    columnPermissions.forEach((permissionRow) => {
+      const permissionName = permissionRow.getAttribute("data-name");
+      const inputChecked = permissionRow.querySelectorAll(
+        "input[type='checkbox']"
+      );
+      // loc qua qua xem cai nao  duoc checked roi .
+      inputChecked.forEach((inputCheck, index) => {
+        if (inputCheck.checked) {
+          listPermissions[index].permissions.push(permissionName);
+        }
+      });
+    });
+
+    const inputForm = formSubmit.querySelector("[input-permissions]");
+    if (listPermissions.length > 0) {
+      inputForm.value = JSON.stringify(listPermissions);
+    }
+    formSubmit.submit();
+  });
+}
+
+const dataPermissions = document.querySelector("[data-permission]");
+if (dataPermissions) {
+  const data = JSON.parse(dataPermissions.getAttribute("data-permission"));
+  const listCheckAll = document.querySelectorAll("input[checkAll]");
+  const columnPermissions = document.querySelectorAll("[data-name]");
+
+  let countInput = 0;
+  columnPermissions.forEach(() => {
+    countInput++;
+  });
+
+  data.forEach((item, index) => {
+    const permissions = item.permissions;
+    if (item.permissions.length === countInput) {
+      listCheckAll[index].checked = true;
+    } else {
+      listCheckAll[index].checked = false;
+    }
+    permissions.forEach((permission) => {
+      const permissionRow = document.querySelector(
+        `[data-name="${permission}"]`
+      );
+      const inputChecked = permissionRow.querySelectorAll("input")[index];
+      inputChecked.checked = true;
+    });
+  });
+}
+// end role permission

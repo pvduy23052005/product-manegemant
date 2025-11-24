@@ -2,12 +2,11 @@ mixin box-role(roles ,title , entityName)
   .card.mt-3
     .card-header.text-start #{entityName} 
     .card-body
-      div(role-permission)
         div.mb-3(data-name = `${title}_create` class = "row")
           .col-4.text-start Thêm #{entityName}
-          each role in roles 
+          each role in roles
             .col-4.text-center 
-              input( type="checkbox" name="")
+              input( type="checkbox" name="" )
         div.mb-3(data-name = `${title}_edit` class = "row")
           .col-4.text-start Sửa #{entityName}
           each role in roles 
