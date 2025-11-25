@@ -1,0 +1,70 @@
+extends ../../layout/layoutDefault.pug
+include ../../mixins/box-alert.pug
+include ../../mixins/header-menu.pug
+
+block main 
+  if role.permissions.includes("account_create")
+    +box-alert-success(5000)
+    +box-alert-error(5000)
+
+    +header-menu("Tạo tài khoản" , "")
+    .container
+      .card.mb-5.text-start.mt-4
+        .card-body
+          form(
+            action=`/admin/account/create`
+            method="POST"
+            enctype="multipart/form-data"
+          )
+            .form-group.text-start.mb-3
+              label.mb-3(for="fullName") Họ tên * 
+              input(
+                type="text"
+                name="fullName"
+                class="form-control"
+                required
+              )
+
+            .form-group.text-start.mb-3
+              label.mb-3(for="email") Email *
+              input.form-control(
+                type="email"
+                name="email"
+                required
+              )
+
+            .form-group.text-start.mb-3
+              label.mb-3(for="password") Mật khẩu *
+              input.form-control(
+                type="password"
+                name="password"
+                required
+              )
+
+            .form-group.text-start.mb-3
+              label.mb-3(for="avatar") Ảnh đại diện
+              input(type="file",
+                class = "form-control" 
+                name="avatar" 
+                id="avatar" 
+                accept="image/*")
+              img(src="", id = "preview" alt="" style="max-width: 150px; margin-top: 10px;")
+
+            //- Phân quyền
+            .form-group.text-start.mb-3
+              label.mb-3(for="role_id") Phân quyền *
+              select#role_id.form-control(name="role_id" required)
+                option(value="") -- Chọn phân quyền --
+                each role in roles
+                  option(value=role._id) #{role.title}
+
+            .form-group.text-start.mb-3
+              label.mb-3(for="status") Trạng thái
+              select.form-control(name="status")
+                option(value="active") Hoạt động
+                option(value="inactive") Dừng hoạt động
+
+            button(type="submit" class = "button-box-menu") Lưu
+  else
+    +header-menu("Bạn không có quyền")
+

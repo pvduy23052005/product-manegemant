@@ -22,7 +22,7 @@ module.exports.uploadSingle = (fieldName) => {
         fs.unlinkSync(req.file.path);
 
         // Lưu URL vào req để controller dùng
-        req.body.thumbnail = result.secure_url;
+        req.body[fieldName] = result.secure_url;
         next();
       } catch (err) {
         console.error("Upload error:", err);

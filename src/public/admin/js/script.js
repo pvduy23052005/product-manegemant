@@ -72,7 +72,7 @@ if (formSearch) {
 }
 
 // preview image
-const inputThumbnail = document.querySelector("#thumbnail");
+const inputThumbnail = document.querySelector("#thumbnail , #avatar");
 if (inputThumbnail) {
   inputThumbnail.addEventListener("change", (e) => {
     const preivewImage = document.querySelector("#preview");

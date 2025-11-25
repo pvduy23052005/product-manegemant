@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const randomstring = require("../helpers/random");
 
 const accountSchema = new mongoose.Schema(
   {
@@ -18,10 +19,10 @@ const accountSchema = new mongoose.Schema(
     token: {
       type: String,
       required: true,
+      default: randomstring.randomString(20),
     },
-    avartar: {
+    avatar: {
       type: String,
-      default: "",
     },
     role_id: {
       type: String,
@@ -30,10 +31,10 @@ const accountSchema = new mongoose.Schema(
       type: String,
       default: "active",
     },
-    deleted : {
+    deleted: {
       type: Boolean,
       default: false,
-    }
+    },
   },
   { timestamps: true }
 );
