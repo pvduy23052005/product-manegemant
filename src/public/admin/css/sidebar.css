@@ -98,6 +98,7 @@
   border-radius: 50%;
   cursor: pointer;
   transition: all 0.4s ease;
+  z-index: 999;
 }
 
 .sidebar.close .sidebar-header .icon-toggle {
@@ -191,10 +192,9 @@
   display: flex;
 }
 
-.sidebar .nav-item .sub-menu.close-sub-menu{
+.sidebar .nav-item .sub-menu.close-sub-menu {
   display: none;
 }
-
 
 .sidebar .sub-menu li {
   width: 100%;
@@ -215,9 +215,9 @@
 
 /* code toggle-switch */
 
-.mode ul{
+.mode ul {
   margin: 0;
-  padding : 0 ;
+  padding: 0;
 }
 
 .mode .toggle-switch {
@@ -308,9 +308,9 @@
   background-color: var(--color-bg-sidebar);
   height: 65px;
   align-items: center;
-  width: calc(100% - 250px);
+  width: 100%;
   top: 0;
-  left: 250px;
+  left: 0;
   position: relative;
   transition: all 0.4s ease;
   display: flex;

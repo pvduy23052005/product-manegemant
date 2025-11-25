@@ -11,7 +11,7 @@
   position: sticky;
   top: 0;
   flex-shrink: 0;
-  z-index: 998;
+  z-index: 999;
 }
 
 .button-box-menu {
@@ -159,6 +159,7 @@ a {
   width: 100%;
   height: 40px;
   border-radius: 4px;
+  z-index: 998;
 }
 
 .container-wraper .box-menu .box-default {
@@ -192,7 +193,7 @@ a {
   opacity: 1;
 }
 
-.show-alert [close-alert]{
+.show-alert [close-alert] {
   cursor: pointer;
 }
 
@@ -200,22 +201,22 @@ a {
   background-color: rgb(169, 232, 74);
 }
 
-.show-alert.warning{
+.show-alert.warning {
   background-color: rgba(232, 232, 56, 0.965);
 }
 
-.show-alert.error{
+.show-alert.error {
   background-color: rgb(221, 58, 58);
 }
 
-.show-alert.close-alert{
+.show-alert.close-alert {
   display: none;
 }
 /* end css show alert */
 
 /* css role */
-.card{
-  border : none;
+.card {
+  border: none;
   border-radius: none;
 }
 /* end css role */
