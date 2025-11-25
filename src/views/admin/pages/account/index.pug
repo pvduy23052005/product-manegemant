@@ -4,11 +4,13 @@ include ../../mixins/header-menu.pug
 include ../../mixins/box-item-account.pug
 
 block main 
+  if role.permissions.includes("account_view")
+    +box-alert-success(5000)
+    +box-alert-error(5000)
 
-  +box-alert-success(5000)
-  +box-alert-error(5000)
+    +header-menu("Danh sách tài khoản" , "/admin/account/create")
 
-  +header-menu("Danh sách tài khoản" , "/admin/account/create")
-
-  +box-item-account(accounts)
+    +box-item-account(accounts)
+  else
+    +header-menu("Bạn không có quyền")
 

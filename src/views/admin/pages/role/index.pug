@@ -9,10 +9,10 @@ block main
 
   .box-menu 
     h4 #{title}
-    if link != ""
+    if role.permissions.includes("permission_view")
       a( class = "button-box-menu" button-submit-permission) 
         | Cập nhật 
-  
+
   div(
     data-permission = roles
   )
@@ -44,6 +44,10 @@ block main
       +box-role(roles , "product" , "Sản phẩm")
 
       +box-role(roles , "product-category" , "Danh mục Sản phẩm")
+
+      +box-role(roles , "account" , "Tài khoản")
+
+      +box-role(roles , "permission" ,"Phân quyền")
 
   form(
     id = "form-permission" ,

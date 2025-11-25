@@ -4,7 +4,11 @@ include ../../mixins/box-item-category.pug
 include ../../mixins/box-alert.pug
 
 block main 
-  +header-menu("Danh sách danh mục" , "/admin/category/create") 
+
+  if role.permissions.includes("product-category_create")
+    +header-menu("Danh sách danh mục" , "/admin/category/create") 
+  else 
+    +header-menu("Danh sách danh mục" , "") 
 
   +box-alert-success(5000)
   +box-alert-error(5000)

@@ -4,7 +4,10 @@ include ../../mixins/box-item.pug
 include ../../mixins/box-alert.pug
 
 block main 
-  +header-menu("Danh sách sản phẩm" , "/admin/product/create") 
+  if role.permissions.includes("product_create")
+    +header-menu("Danh sách sản phẩm" , "/admin/product/create") 
+  else 
+    +header-menu("Danh sách sản phẩm" , "") 
 
   +box-alert-success(5000)
   +box-alert-error(5000)
@@ -16,7 +19,7 @@ block main
     data-path = "/admin/product/change-status"
     id = "form-change-status"
     ) 
-  
+
   form(action=""
     method = "post"
     data-path = "/admin/product/delete"

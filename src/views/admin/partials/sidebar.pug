@@ -9,33 +9,39 @@ aside.sidebar
     ul.nav-link 
       li.nav-item 
         .nav-box 
-          a.nav-link(href="/admin")
+          a.nav-link(href="/admin/dashboard")
             i(class="fa-solid fa-house-chimney icon")
             span(class = "text link-name") dashboard
 
       li.nav-item
-        .nav-box 
-          a.nav-link(href="/admin/product")
-            <i class="fa-solid fa-calendar icon"></i>
-            span(class = "text link-name") Products
-          <i class='bx  bx-caret-down arrow ' ></i> 
-        ul.sub-menu
-          li
-            a(href="/admin/product" class= "text") List product
-          li
-            a(href="/admin/category" class= "text") Category
-          li
-            a(href="/admin/product/create" class= "text") Create
-      li.nav-item 
-        .nav-box 
-          a.nav-link(href="/admin/role")
-            i(class="fa-solid fa-unlock-keyhole icon")
-            span(class = "text link-name") Phân quyền
-      li.nav-item 
-        .nav-box 
-          a.nav-link(href="/admin/account")
-            i(class="fa-solid fa-users icon")
-            span(class = "text link-name") Tài khoản
+        if role.permissions.includes('product_view')
+          .nav-box 
+            a.nav-link(href="/admin/product")
+              <i class="fa-solid fa-calendar icon"></i>
+              span(class = "text link-name") Products
+            <i class='bx  bx-caret-down arrow ' ></i> 
+          ul.sub-menu
+            if role.permissions.includes('product_view')
+              li
+                a(href="/admin/product" class= "text") List product
+            if role.permissions.includes('product-category_view')
+              li
+                a(href="/admin/category" class= "text") Category
+            if role.permissions.includes('product_create')
+              li
+                a(href="/admin/product/create" class= "text") Create
+      if role.permissions.includes("permission_view")
+        li.nav-item 
+          .nav-box 
+            a.nav-link(href="/admin/role")
+              i(class="fa-solid fa-unlock-keyhole icon")
+              span(class = "text link-name") Phân quyền
+      if role.permissions.includes('account_view')
+        li.nav-item 
+          .nav-box 
+            a.nav-link(href="/admin/account")
+              i(class="fa-solid fa-users icon")
+              span(class = "text link-name") Tài khoản
 
   .mode 
     ul

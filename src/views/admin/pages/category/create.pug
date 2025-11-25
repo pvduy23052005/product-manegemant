@@ -3,63 +3,67 @@ include ../../mixins/header-menu.pug
 include ../../mixins/box-alert.pug
 
 block main
-  +header-menu("Tạo danh mục")
+  if role.permissions.includes("product-category_create")
 
-  +box-alert-warning(5000)
+    +header-menu("Tạo danh mục")
 
-  .container
-    .card.mb-5.text-start.mt-4
-      .card-body
-        form(
-          method="POST",
-          action=`/admin/category/create`, 
-          id="form-edit-category"
-          enctype="multipart/form-data" 
-        )
+    +box-alert-warning(5000)
 
-          .form-group.mb-3
-            label.mb-2(for="title") Tiêu đề danh mục
-            input(
-              type="text", 
-              class = "form-control" 
-              name="title" 
-              id="title", 
-              required
-            )
+    .container
+      .card.mb-5.text-start.mt-4
+        .card-body
+          form(
+            method="POST",
+            action=`/admin/category/create`, 
+            id="form-edit-category"
+            enctype="multipart/form-data" 
+          )
 
-          .form.-group.mb-3  
-            label.mb-2(for="slug") Danh mục 
-            select(class = "form-control" name="parent_id" id="parent_id")  
-              each category in categories
-                option(value=category._id) #{category.title}
+            .form-group.mb-3
+              label.mb-2(for="title") Tiêu đề danh mục
+              input(
+                type="text", 
+                class = "form-control" 
+                name="title" 
+                id="title", 
+                required
+              )
 
-          .form-group.mb-3
-            label.mb-2(for="description") Mô tả
-            textarea(name="description", 
-              class = "form-control textarea-mce" id="description") 
+            .form.-group.mb-3  
+              label.mb-2(for="slug") Danh mục 
+              select(class = "form-control" name="parent_id" id="parent_id")  
+                each category in categories
+                  option(value=category._id) #{category.title}
 
-          .form-group.mb-3
-            label.mb-2(for="thumbnail") Ảnh đại diện
-            input(type="file",
-              class = "form-control" 
-              name="thumbnail" 
-              id="thumbnail" 
-              accept="image/*")
-            img(src="", id = "preview" alt="" style="max-width: 150px; margin-top: 10px; border-radius : 12px ;")
+            .form-group.mb-3
+              label.mb-2(for="description") Mô tả
+              textarea(name="description", 
+                class = "form-control textarea-mce" id="description") 
 
-          .form-group.mb-3
-            label.mb-2(for="status") Trạng thái
-            select( class = "form-control" name="status" id="status")
-              option(value="active", ) Hoạt động
-              option(value="inactive",) Không hoạt động
+            .form-group.mb-3
+              label.mb-2(for="thumbnail") Ảnh đại diện
+              input(type="file",
+                class = "form-control" 
+                name="thumbnail" 
+                id="thumbnail" 
+                accept="image/*")
+              img(src="", id = "preview" alt="" style="max-width: 150px; margin-top: 10px; border-radius : 12px ;")
 
-          .form-group.mb-4
-            label.mb-2(for="position") Vị trí hiển thị
-            input(type="number",
-              class = "form-control" 
-              name="position" 
-              id="position"
-              min="0" 
-              placeholder="Tự động tăng" )
+            .form-group.mb-3
+              label.mb-2(for="status") Trạng thái
+              select( class = "form-control" name="status" id="status")
+                option(value="active", ) Hoạt động
+                option(value="inactive",) Không hoạt động
 
-          button(type="submit" class = "button-box-menu") Tạo mới  
+            .form-group.mb-4
+              label.mb-2(for="position") Vị trí hiển thị
+              input(type="number",
+                class = "form-control" 
+                name="position" 
+                id="position"
+                min="0" 
+                placeholder="Tự động tăng" )
+
+            button(type="submit" class = "button-box-menu") Tạo mới  
+  else 
+    +header-menu("Bạn không có quyền")
