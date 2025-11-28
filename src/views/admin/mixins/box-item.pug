@@ -86,13 +86,14 @@ mixin box-item(listItem  , title , keySearch = "")
                       data-id = item.id
                       data-title = item.title
                       ) Xóa
-
-                  button(class = "btn-active"
-                    change-status = `${item.status}-${item.id}`
-                    ) Hoạt động 
-                  button(class = "btn-inactive"
-                    change-status = `${item.status}-${item.id}`
-                    ) Ngừng hoạt động
+                  if item.status == "inactive"
+                    button(class = "btn-active"
+                      change-status = `${item.status}-${item.id}`
+                      ) Hoạt động 
+                  else 
+                    button(class = "btn-inactive"
+                      change-status = `${item.status}-${item.id}`
+                      ) Ngừng hoạt động
 
             .col-2
               div 

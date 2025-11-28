@@ -21,7 +21,7 @@ module.exports.index = async (req, res) => {
   res.render("admin/pages/category/index", {
     title: "Category",
     categories: categories,
-    keySearch : req.query.keySeach || "",
+    keySearch: req.query.keySeach || "",
   });
 };
 
@@ -62,7 +62,7 @@ module.exports.changeMulti = async (req, res) => {
             status: "active",
           }
         );
-        req.flash("success", "Cập nhật nhiều bản ghi thành công");
+        req.flash("success", "Thay đổi trạng thái thành công");
         break;
       case "inactive":
         await Category.updateMany(
@@ -122,7 +122,7 @@ module.exports.createPost = async (req, res) => {
     }
 
     await newCategory.save();
-    req.flash("success", "Tạo mới danh mục thành công");
+    req.flash("success", "Tạo mới thành công");
   } catch (error) {
     req.flash("error", "Vui lòng thử lại");
   }
@@ -142,7 +142,7 @@ module.exports.delete = async (req, res) => {
         deleted: true,
       }
     );
-    req.flash("success", "Xóa danh mục thành công");
+    req.flash("success", "Xóa thành công");
   } catch (error) {
     req.flash("error", "Vui lòng thử lại");
   }

@@ -60,12 +60,12 @@ module.exports.changeStatus = async (req, res) => {
         },
       }
     );
-    req.flash("success", "Thanh đổi thành công!");
+    req.flash("success", "Thanh đổi thành công");
     const backgUrl = req.get("referer");
     res.redirect(backgUrl);
   } catch (error) {
-    req.flash("erorr", "Thanh đổi thất bại vui lòng thư lại!");
-    consle.log(error);
+    req.flash("erorr", "Vui lòng thử lại");
+    console.log(error);
   }
 };
 
@@ -76,7 +76,7 @@ module.exports.create = async (req, res) => {
   };
   const categories = await Category.find(find).sort({ createdAt: -1 });
   res.render("admin/pages/product/create", {
-    title: "Create Product",
+    title: "Tạo mới sản phẩm",
     categories: categories,
   });
 };
@@ -102,9 +102,9 @@ module.exports.createPost = async (req, res) => {
 
     await newProduct.save();
 
-    req.flash("success", "Thêm mới thành công!");
+    req.flash("success", "Thêm mới thành công");
   } catch (error) {
-    req.flash("error", "Lỗi mạng!");
+    req.flash("error", "Vui lòng thử lại");
   }
   res.redirect("/admin/product");
 };
@@ -160,7 +160,7 @@ module.exports.editPatch = async (req, res) => {
     );
     req.flash("success", "Cập nhật thành công!");
   } catch (error) {
-    req.flash("error", "Cập nhật thất bại!");
+    req.flash("error", "Vui lòng thử lại");
   }
   res.redirect("/admin/product/edit/" + idProduct);
 };
@@ -186,7 +186,7 @@ module.exports.delete = async (req, res) => {
     req.flash("success", `Xóa thành công ${product.title} !`);
   } catch (error) {
     console.log(error);
-    req.flash(`error", "Xóa thất bại ${product.title} !`);
+    req.flash(`error", "Vui lòng thử lai`);
   }
 
   res.redirect("/admin/product");
@@ -213,7 +213,7 @@ module.exports.changeMulti = async (req, res) => {
             },
           }
         );
-        req.flash("success", `Đã thay đổi trạng thái  sản phẩm thành công! `);
+        req.flash("success", `Thay đổi trạng thái thành công! `);
         break;
       case "delete":
         await Product.updateMany(
@@ -225,20 +225,20 @@ module.exports.changeMulti = async (req, res) => {
             },
           }
         );
-        req.flash("success", `Đã thay đổi trạng thái  sản phẩm thành công! `);
+        req.flash("success", `Thay đổi trạng phẩm thành công! `);
         break;
       case "inactive":
         await Product.updateMany(
           { _id: { $in: listId } },
           { status: statusChange }
         );
-        req.flash("success", `Đã thay đổi trạng thái  sản phẩm thành công! `);
+        req.flash("success", `Thay đổi trạng thái thành công`);
         break;
       default:
         break;
     }
   } catch (error) {
-    req.flash("error", "Bạn vui lòng thử lại!");
+    req.flash("error", "Vui lòng thử lại");
   }
   res.redirect("/admin/product");
 };
