@@ -231,10 +231,10 @@
 
 .mode .moon-sun {
   height: 100%;
-  display: flex;
   align-items: center;
   justify-content: center;
   min-width: 60px;
+  /* position: relative; */
 }
 
 .mode .moon-sun .icon {
@@ -242,7 +242,11 @@
   font-size: 20px;
   top: 50%;
   transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
 
 .mode .toggle-switch .mode-switch {
   position: absolute;
@@ -265,19 +269,33 @@
 
 .mode .toggle-switch .mode-switch .switch::before {
   content: "";
-  width: 15px;
-  height: 15px;
+  width: 17px;
+  height: 17px;
   position: absolute;
   background-color: var(--color-bg-secondary);
   border-radius: 50%;
   top: 50%;
   transform: translateY(-50%);
   left: 3px;
+  transition: all 0.3s ease;
+}
+
+body.dark .mode .toggle-switch .mode-switch .switch::before {
+  left : 25px; 
 }
 
 .mode .sun {
   opacity: 0;
 }
+
+body.dark .mode .sun {
+  opacity: 1;
+}
+
+body.dark .mode .moon{
+  opacity: 0;
+}
+
 
 /* code text-container */
 .main-container {
@@ -318,7 +336,7 @@
   flex-shrink: 0;
   border-bottom: 1px solid #0000004a;
   padding: 0px 40px;
-  justify-content:  space-between;
+  justify-content: space-between;
 }
 
 .sidebar.close ~ .header {

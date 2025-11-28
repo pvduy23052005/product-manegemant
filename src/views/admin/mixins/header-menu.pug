@@ -1,6 +1,6 @@
 mixin header-menu(title  , link = "")
   .box-menu 
-    h4 #{title}
+    h4(class = "text") #{title}
     if link != ""
       a(href=link class = "button-box-menu") 
         i(class = "fa-solid fa-plus") 

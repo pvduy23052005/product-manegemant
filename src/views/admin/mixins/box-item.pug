@@ -47,23 +47,23 @@ mixin box-item(listItem  , title , keySearch = "")
 
           .col-1.col-md-1
             div(class = "box-menu box-menu-icon")
-              i(class = "fa-solid fa-rotate")
+              i(class = "fa-solid fa-rotate text")
       .container-header-item
         .row 
-          .col-1 
+          .col-1.text 
             div 
               input(type="checkbox" name="check-all")
-          .col-3
+          .col-3.text 
             div Tên #{title} 
-          .col-2
+          .col-2.text 
             div Ảnh  
-          .col-2
+          .col-2.text 
             div giá 
-          .col-1
+          .col-1.text 
             div Số lượng 
-          .col-1
+          .col-1.text 
             div Ví trí 
-          .col-2  
+          .col-2.text 
             div Trạng thái 
       .container-list-item(
       )
@@ -77,7 +77,7 @@ mixin box-item(listItem  , title , keySearch = "")
                 )
             .col-3
               div(class = "box-title") 
-                div.title #{item.title}
+                div.title.text  #{item.title}
                 .box-sub-menu 
                   if role.permissions.includes("product_edit")
                     a(class = "btn-revise" href = `/admin/product/edit/` + item.id) Sửa
@@ -95,18 +95,18 @@ mixin box-item(listItem  , title , keySearch = "")
                       change-status = `${item.status}-${item.id}`
                       ) Ngừng hoạt động
 
-            .col-2
+            .col-2.text 
               div 
                 img(src=item.thumbnail, alt=item.title)  
             .col-2
-              div #{item.price} 
+              div.text  #{item.price} 
             .col-1
-              div #{item.stock} 
+              div.text  #{item.stock} 
             .col-1
-              div #{item.position} 
+              div.text  #{item.position} 
             .col-2  
-              div   
+              div.text    
                 if item.status == "active"
-                  button(class = "status-item active ") Hoạt động  
+                  button(class = "status-item active text  ") Hoạt động  
                 else 
-                  button(class = "status-item inactive") Ngừng hoạt động 
+                  button(class = "status-item inactive text ") Ngừng hoạt động 

@@ -35,20 +35,20 @@ mixin box-item-account(listItem   , keySearch = "")
           .col-2.col-md-2
           .col-1.col-md-1
             div(class = "box-menu box-menu-icon")
-              i(class = "fa-solid fa-rotate")
+              i(class = "fa-solid fa-rotate text")
       .container-header-item
         .row 
           .col-1 
             div 
               input(type="checkbox" name="check-all")
           .col-3
-            div Tên tài khoản  
+            div.text  Tên tài khoản  
           .col-3
-            div Email 
+            div.text  Email 
           .col-3
-            div Chức vụ 
+            div.text  Chức vụ 
           .col-2
-            div Trạng thái
+            div.text  Trạng thái
       .container-list-item(
       )
         each item in listItem
@@ -61,7 +61,7 @@ mixin box-item-account(listItem   , keySearch = "")
                 )
             .col-3
               div(class = "box-title") 
-                div.title #{item.fullName}
+                div.title.text  #{item.fullName}
                 .box-sub-menu 
                   a(class = "btn-revise" href = `/admin/acount/edit/` + item.id) Sửa
                   button(class = "btn-delete"
@@ -75,12 +75,12 @@ mixin box-item-account(listItem   , keySearch = "")
                     change-status = `${item.status}-${item.id}`
                     ) Ngừng hoạt động
             .col-3
-              div #{item.email} 
+              div.text  #{item.email} 
             .col-3
-              div #{item.role.title} 
+              div.text  #{item.role.title} 
             .col-2
               div   
                 if item.status == "active"
-                  button(class = "status-item active ") Hoạt động  
+                  button(class = "status-item active text") Hoạt động  
                 else 
-                  button(class = "status-item inactive") Ngừng hoạt động 
+                  button(class = "status-item inactive text") Ngừng hoạt động 

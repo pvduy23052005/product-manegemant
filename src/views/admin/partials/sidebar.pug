@@ -3,7 +3,7 @@ aside.sidebar
     a(href="" header-logo)
       img(src="/admin/images/logo.jpg" alt="")
     span(class = "header-title text") Phung Van Duy 
-    i(class = "bxr bx-chevron-right icon-toggle")
+    i(class = "bxr bx-chevron-right icon-toggle ")
 
   nav.sidebar-nav 
     ul.nav-link 
@@ -11,25 +11,25 @@ aside.sidebar
         .nav-box 
           a.nav-link(href="/admin/dashboard")
             i(class="fa-solid fa-house-chimney icon")
-            span(class = "text link-name") dashboard
+            span(class = "text link-name") Trang chủ
 
       li.nav-item
         if role.permissions.includes('product_view')
           .nav-box 
             a.nav-link(href="/admin/product")
               <i class="fa-solid fa-calendar icon"></i>
-              span(class = "text link-name") Products
+              span(class = "text link-name") Sản phẩm
             <i class='bx  bx-caret-down arrow ' ></i> 
           ul.sub-menu
             if role.permissions.includes('product_view')
               li
-                a(href="/admin/product" class= "text") List product
+                a(href="/admin/product" class= "text") Danh sách
             if role.permissions.includes('product-category_view')
               li
-                a(href="/admin/category" class= "text") Category
+                a(href="/admin/category" class= "text") Danh mục
             if role.permissions.includes('product_create')
               li
-                a(href="/admin/product/create" class= "text") Create
+                a(href="/admin/product/create" class= "text") Tạo mới
       if role.permissions.includes("permission_view")
         li.nav-item 
           .nav-box 
@@ -49,12 +49,12 @@ aside.sidebar
         .nav-box 
           a.nav-link(href="/admin/auth/logout")
             <i class="fa-solid fa-right-from-bracket icon"></i>
-            span(class = "text link-name") Logout
+            span(class = "text link-name") Đăng xuất
 
     .toggle-switch
       .moon-sun 
         i(class = "fa-solid fa-moon icon moon")
         i(class = "bx bx-sun icon sun")
-      span(class = "text-switch text") Dark mode 
+      span(class = "text-switch text") 
       .mode-switch  
         .switch 

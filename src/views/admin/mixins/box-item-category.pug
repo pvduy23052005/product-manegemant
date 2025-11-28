@@ -47,20 +47,20 @@ mixin box-item-category(listItem , keySearch = "")
 
           .col-1.col-md-1
             div(class = "box-menu box-menu-icon")
-              i(class = "fa-solid fa-rotate")
+              i(class = "fa-solid fa-rotate text")
       .container-header-item
         .row 
           .col-1 
             div 
               input(type="checkbox" name="check-all")
           .col-4
-            div Tên danh mục
+            div.text  Tên danh mục
           .col-2
-            div Ảnh 
+            div.text  Ảnh 
           .col-1
-            div Ví trí 
+            div.text  Ví trí 
           .col-2  
-            div Trạng thái 
+            div.text  Trạng thái 
       .container-list-item(
       )
         each item in listItem
@@ -73,7 +73,7 @@ mixin box-item-category(listItem , keySearch = "")
                 )
             .col-4
               div(class = "box-title") 
-                div.title #{item.title}
+                div.title.text  #{item.title}
                 .box-sub-menu 
                   if role.permissions.includes("product-category_edit")
                     a(class = "btn-revise" href = `/admin/category/edit/` + item.id) Sửa
@@ -89,13 +89,13 @@ mixin box-item-category(listItem , keySearch = "")
                     change-status = `${item.status}-${item.id}`
                     ) Ngừng hoạt động
             .col-2
-              div 
+              div.text  
                 img(src=item.thumbnail, alt=item.title)  
             .col-1
-              div #{item.position} 
+              div.text  #{item.position} 
             .col-2  
-              div   
+              div.text    
                 if item.status == "active"
-                  button(class = "status-item active ") Hoạt động  
+                  button(class = "status-item active text") Hoạt động  
                 else 
-                  button(class = "status-item inactive") Ngừng hoạt động 
+                  button(class = "status-item inactive text") Ngừng hoạt động 

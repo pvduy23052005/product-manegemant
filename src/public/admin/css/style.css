@@ -1,4 +1,9 @@
 /* product */
+
+.text {
+  color: var(--color-text-primary);
+}
+
 .box-menu {
   display: flex;
   align-items: center;
@@ -12,6 +17,10 @@
   top: 0;
   flex-shrink: 0;
   z-index: 999;
+}
+
+.box-menu h4 {
+  color: var(--color-text-primary);
 }
 
 .button-box-menu {

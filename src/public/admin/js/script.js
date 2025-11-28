@@ -4,6 +4,8 @@ if (body) {
   const toggleSwitch = document.querySelector(".icon-toggle");
   const downArrow = document.querySelector(".arrow");
   const subMenu = body.querySelector(".sub-menu");
+  const toggleSwitchMode = body.querySelector(".switch");
+  const textSwitch = body.querySelector(".text-switch");
 
   if (localStorage.getItem("closeSidebar") == "close") {
     sidebar.classList.add("close");
@@ -12,6 +14,24 @@ if (body) {
   if (localStorage.getItem("showSubMenu") == "show-sub-menu") {
     subMenu.classList.add("show-sub-menu");
   }
+
+  if (localStorage.getItem("modeSwitch") === "dark") {
+    textSwitch.innerHTML = "Sáng";
+    body.classList.add("dark");
+  } else {
+    textSwitch.innerHTML = "Tối";
+  }
+
+  toggleSwitchMode.addEventListener("click", (e) => {
+    body.classList.toggle("dark");
+    if (body.classList.contains("dark")) {
+      textSwitch.innerHTML = "Sáng";
+      localStorage.setItem("modeSwitch", "dark");
+    } else {
+      textSwitch.innerHTML = "Tối";
+      localStorage.setItem("modeSwitch", "light");
+    }
+  });
 
   toggleSwitch.addEventListener("click", () => {
     sidebar.classList.toggle("close");
