@@ -27,7 +27,6 @@ module.exports.index = async (req, res) => {
       _id: product.createBy.account_id,
     }).select("fullName");
     if (user) {
-      console.log(user);
       product.userCreate = user.fullName;
     } else {
       product.userCreate = "";
@@ -53,6 +52,12 @@ module.exports.changeStatus = async (req, res) => {
       },
       {
         status: status,
+        $push: {
+          updatedBy: {
+            account_id: res.locals.user.id,
+            updatedTime: new Date(),
+          },
+        },
       }
     );
     req.flash("success", "Thanh đổi thành công!");
@@ -143,7 +148,15 @@ module.exports.editPatch = async (req, res) => {
       {
         _id: idProduct,
       },
-      req.body
+      {
+        ...req.body,
+        $push: {
+          updatedBy: {
+            account_id: res.locals.user.id,
+            updatedTime: new Date(),
+          },
+        },
+      }
     );
     req.flash("success", "Cập nhật thành công!");
   } catch (error) {
@@ -166,6 +179,7 @@ module.exports.delete = async (req, res) => {
         deleted: true,
         deletedBy: {
           account_id: res.locals.user.id,
+          deletedTime: new Date(),
         },
       }
     );
@@ -189,7 +203,15 @@ module.exports.changeMulti = async (req, res) => {
       case "active":
         await Product.updateMany(
           { _id: { $in: listId } },
-          { status: statusChange }
+          {
+            status: statusChange,
+            $push: {
+              updatedBy: {
+                account_id: res.locals.user.id,
+                updateTime: new Date(),
+              },
+            },
+          }
         );
         req.flash("success", `Đã thay đổi trạng thái  sản phẩm thành công! `);
         break;

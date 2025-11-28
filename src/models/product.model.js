@@ -64,6 +64,15 @@ const productSchema = new mongoose.Schema(
         default: Date.now(),
       },
     },
+    updatedBy: [
+      {
+        account_id: String,
+        updatedTime: {
+          type: Date,
+          default: Date.now(),
+        },
+      },
+    ],
   },
   {
     timestamps: true, // Tự động tạo createdAt và updatedAt
