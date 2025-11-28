@@ -9,4 +9,6 @@ router.get("/create", controller.create);
 
 router.post("/create", upload.uploadSingle("avatar"), controller.createPost);
 
+router.get("/profile/:id", controller.profile);
+
 module.exports = router;

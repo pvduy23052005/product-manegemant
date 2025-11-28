@@ -1,0 +1,49 @@
+extends ../../layout/layoutDefault.pug
+include ../../mixins/box-alert.pug
+include ../../mixins/header-menu.pug
+
+block main 
+  +box-alert-success(5000)
+  +box-alert-error(5000)
+
+  +header-menu("My profile" , "")
+  .container
+    .card.mb-5.text-start.mt-4
+      .card-body
+        form(
+          action=`/admin/account/profile/${user._id}`
+          method="POST"
+          enctype="multipart/form-data"
+        )
+          .form-group.text-start.mb-3
+            label.mb-3(for="fullName") Họ tên * 
+            input(
+              type="text"
+              name="fullName"
+              class="form-control"
+              required
+              value = user.fullName
+            )
+
+          .form-group.text-start.mb-3
+            label.mb-3(for="email") Email *
+            input.form-control(
+              type="email"
+              name="email"
+              required
+              value = user.email
+              disabled
+            )
+
+          .form-group.text-start.mb-3
+            label.mb-3(for="avatar") Ảnh đại diện
+            input(type="file",
+              class = "form-control" 
+              name="avatar" 
+              id="avatar" 
+              accept="image/*")
+            img(src= (user.avatar != ""?  user.avatar : "/admin/images/default-avatar.webp" ) , id = "preview" alt="" style="max-width: 150px; margin-top: 10px;")
+
+
+          button(type="submit" class = "button-box-menu") Lưu
+

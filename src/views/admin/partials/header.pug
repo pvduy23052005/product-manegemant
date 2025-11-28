@@ -1,3 +1,5 @@
 .header
-  h3 day la header 
-  div #{user.fullName}
+
+    a(href=`/admin/account/profile/${user._id}` class = "box-header-profile" ) 
+      span(class = "user-name text") #{user.fullName}
+      img(class = "user-avatar" src= (user.avatar != "" ? user.avatar : "/admin/images/default-avatar.webp") alt="User Avatar")

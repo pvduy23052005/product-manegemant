@@ -59,3 +59,12 @@ module.exports.createPost = async (req, res) => {
     res.redirect("/admin/account/create");
   }
 };
+
+//[get] /admin/account/profile/:id
+module.exports.profile = async (req, res) => {
+  try {
+    res.render("admin/pages/account/profile", {
+      title: "My profile",
+    });
+  } catch (error) {}
+};

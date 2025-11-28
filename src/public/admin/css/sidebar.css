@@ -318,6 +318,7 @@
   flex-shrink: 0;
   border-bottom: 1px solid #0000004a;
   padding: 0px 40px;
+  justify-content:  space-between;
 }
 
 .sidebar.close ~ .header {
