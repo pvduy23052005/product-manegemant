@@ -34,8 +34,6 @@ module.exports.index = async (req, res) => {
     }
   }
 
-  console.log(listProduct);
-
   res.render("admin/pages/product/index", {
     title: "Products",
     listProduct: listProduct,
@@ -165,7 +163,10 @@ module.exports.delete = async (req, res) => {
         _id: idProduct,
       },
       {
-        deleted: tre,
+        deleted: true,
+        deletedBy: {
+          account_id: res.locals.user.id,
+        },
       }
     );
     req.flash("success", `Xóa thành công ${product.title} !`);
@@ -193,7 +194,15 @@ module.exports.changeMulti = async (req, res) => {
         req.flash("success", `Đã thay đổi trạng thái  sản phẩm thành công! `);
         break;
       case "delete":
-        await Product.updateMany({ _id: { $in: listId } }, { deleted: true });
+        await Product.updateMany(
+          { _id: { $in: listId } },
+          {
+            deleted: true,
+            deletedBy: {
+              account_id: locals.user.id,
+            },
+          }
+        );
         req.flash("success", `Đã thay đổi trạng thái  sản phẩm thành công! `);
         break;
       case "inactive":
