@@ -1,6 +1,7 @@
 const Product = require("../../models/product.model");
 const helperSearch = require("../../helpers/helperSerach");
 const Category = require("../../models/category.model");
+const Account = require("../../models/account.model");
 
 //[get] /admin/product
 module.exports.index = async (req, res) => {
@@ -20,6 +21,20 @@ module.exports.index = async (req, res) => {
   }
 
   const listProduct = await Product.find(find).sort({ createdAt: -1 });
+
+  for (const product of listProduct) {
+    const user = await Account.findOne({
+      _id: product.createBy.account_id,
+    }).select("fullName");
+    if (user) {
+      console.log(user);
+      product.userCreate = user.fullName;
+    } else {
+      product.userCreate = "";
+    }
+  }
+
+  console.log(listProduct);
 
   res.render("admin/pages/product/index", {
     title: "Products",
@@ -75,6 +90,10 @@ module.exports.createPost = async (req, res) => {
     } else {
       req.body.position = parseInt(req.body.position);
     }
+
+    req.body.createBy = {
+      account_id: res.locals.user.id,
+    };
 
     const newProduct = new Product(req.body);
 

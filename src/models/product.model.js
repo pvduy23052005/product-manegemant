@@ -8,7 +8,7 @@ const productSchema = new mongoose.Schema(
       required: true,
       trim: true, // tuy chỉnh khoảng trắng ở đầu và cuối
     },
-    category:{
+    category: {
       type: String,
     },
     description: {
@@ -49,6 +49,13 @@ const productSchema = new mongoose.Schema(
       slug: "title",
       unique: true,
       slugPaddingSize: 4, // Thêm số nếu trùng (ví dụ: san-pham-0001)
+    },
+    createBy: {
+      account_id: String,
+      createTime: {
+        type: Date,
+        default: Date.now(),
+      },
     },
   },
   {
