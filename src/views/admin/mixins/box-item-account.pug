@@ -63,17 +63,20 @@ mixin box-item-account(listItem   , keySearch = "")
               div(class = "box-title") 
                 div.title.text  #{item.fullName}
                 .box-sub-menu 
-                  a(class = "btn-revise" href = `/admin/acount/edit/` + item.id) Sửa
+                  a( class = "btn-detail" href="/admin/product/detail" + item.id) Chi tiết 
+                  a(class = "btn-revise" href = `/admin/acount/edit` + item.id) Sửa
                   button(class = "btn-delete"
                     data-id = item.id
                     data-title = item.fullName
                     ) Xóa
-                  button(class = "btn-active"
-                    change-status = `${item.status}-${item.id}`
-                    ) Hoạt động 
-                  button(class = "btn-inactive"
-                    change-status = `${item.status}-${item.id}`
-                    ) Ngừng hoạt động
+                  if item.status == "inactive"
+                    button(class = "btn-active"
+                      change-status = `${item.status}-${item.id}`
+                      ) Hoạt động 
+                  else 
+                    button(class = "btn-inactive"
+                      change-status = `${item.status}-${item.id}`
+                      ) Ngừng hoạt động
             .col-3
               div.text  #{item.email} 
             .col-3

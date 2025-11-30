@@ -1,0 +1,51 @@
+extends ../../layout/layoutDefault.pug
+include ../../mixins/header-menu.pug
+
+block main 
+  +header-menu(`Chi tiết sản phẩm`, "")
+  
+  .container.mt-4
+    .card
+      .card-body
+        .row
+          .col-md-4.text-center
+            img.img-fluid.rounded(
+              src=product.thumbnail
+              alt=product.title
+              style="max-height: 300px;"
+            )
+          
+          .col-md-8
+            h3.mb-3= product.title            
+            table.table
+              tbody
+                tr
+                  td.fw-bold Trạng thái
+                  td
+                    if product.status === 'active'
+                      span(class = "btn-active") Hoạt động
+                    else
+                      span(class = "btn-inactive") Ngừng
+                tr
+                  td.fw-bold Giá
+                  td.text-primary= `$${product.price}`
+                tr
+                  td.fw-bold Giảm giá
+                  td.text-danger= `${product.discountPercentage}%`
+                tr
+                  td.fw-bold Tồn kho
+                  td= product.stock
+                tr
+                  td.fw-bold Vị trí
+                  td= product.position
+            
+            .mt-3
+              a.btn.btn-warning.me-2(href=`/admin/product/edit/${product._id}`) Sửa
+              a.btn.btn-secondary(href="/admin/product") Quay lại
+    
+    .card.mt-3
+      .card-header.bg-primary.text-white Mô tả sản phẩm
+      .card-body
+          .row
+            .col-12.p-4
+              div!= product.description

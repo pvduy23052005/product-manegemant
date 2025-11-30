@@ -1,7 +1,7 @@
 tinymce.init({
   selector: "textarea.textarea-mce",
 
-  height: 300,
+  height: 500,
 
   plugins: [
     "advlist autolink lists link charmap preview anchor",

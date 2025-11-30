@@ -106,6 +106,10 @@ a {
   white-space: nowrap;
 }
 
+.container-wraper .box-item .box-title .box-sub-menu .btn-detail {
+  color: var(--color-button-detail);
+}
+
 .container-wraper .box-item .box-title .box-sub-menu .btn-revise {
   color: var(--color-button-revise);
 }

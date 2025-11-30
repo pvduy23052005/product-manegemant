@@ -12,11 +12,12 @@
   --color-hover-secondary: #e2e2fb; /* màu hover phụ */
   --color-shadow: rgba(0, 0, 0, 0.05); /* bóng đổ */
 
-  --color-button : #5D6EE7 ;
-  --color-button-active : #00B591 ;
-  --color-button-revise : rgb(99, 99, 219)  ;
-  --color-button-delete : rgb(234, 37, 37) ;
-  --color-button-inactive : rgb(214, 62, 62) ;
+  --color-button: #5d6ee7;
+  --color-button-active: #00b591;
+  --color-button-revise: rgb(99, 99, 219);
+  --color-button-delete: rgb(234, 37, 37);
+  --color-button-inactive: rgb(214, 62, 62);
+  --color-button-detail: rgb(204, 204, 147);
 }
 
 body.dark {
