@@ -75,7 +75,7 @@ mixin box-item-category(listItem , keySearch = "")
               div(class = "box-title") 
                 div.title.text  #{item.title}
                 .box-sub-menu 
-                    a( class = "btn-detail" href="/admin/product/detail" + item.id) Chi tiết 
+                  a( class = "btn-detail" href="/admin/product/detail/" + item.id) Chi tiết 
                   if role.permissions.includes("product-category_edit")
                     a(class = "btn-revise" href = `/admin/category/edit/` + item.id) Sửa
                   if role.permissions.includes("product-category_delete")

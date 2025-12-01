@@ -1,6 +1,7 @@
 const express = require("express");
 const path = require("path");
 const routeAddmin = require("./src/routes/admin/index.route");
+const routeClient = require("./src/routes/client/index.route.js");
 require("dotenv").config();
 const Database = require("./src/config/database");
 const methodOverride = require("method-override");
@@ -45,6 +46,7 @@ app.use((req, res, next) => {
 
 Database.connectDatabase();
 routeAddmin(app);
+routeClient(app);
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
