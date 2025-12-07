@@ -1,0 +1,49 @@
+:root {
+  /* Light theme colors */
+
+  /* --- Màu Cơ Bản --- */
+  --color-text-primary: #1f2936; /* màu chữ chính */
+  --color-text-placeholder: #798eae; /* màu placeholder */
+  --color-bg-primary: #f9fafb; /* nền chính */
+  --color-bg-secondary: #ececfd; /* nền phụ (có thể thay bằng #f1f5f9 nếu muốn tông trung tính hơn) */
+  --color-bg-sidebar: #ffffff; /* nền sidebar */
+  --color-border-hr: #e2e8f0; /* màu viền/đường kẻ */
+  --color-shadow: rgba(0, 0, 0, 0.05); /* bóng đổ */
+  --item-box-shadow: rgba(60, 64, 67, 0.1) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+
+  /* --- Màu Chủ Đạo/Nhấn (Primary/Accent) --- */
+  --color-primary: #5eacd4; /* Màu chủ đạo/accent chính */
+  --color-primary-hover: #4c95bb; /* Màu hover của chủ đạo */
+  --color-primary-light: #e9f7fc; /* Nền nhạt của chủ đạo */
+
+  /* Cập nhật các biến hover hiện tại để thống nhất với màu chủ đạo mới */
+  --color-hover-primary: var(
+    --color-primary-hover
+  ); /* Thay #695cfe bằng màu primary mới */
+  --color-hover-secondary: #e2e2fb; /* Giữ nguyên hoặc có thể dùng #D9EFFF để hợp tông xanh hơn */
+
+  /* --- Màu Ngữ Cảnh (Contextual) --- */
+  --color-success: #4ade80; /* Thành công */
+  --color-warning: #fbbf24; /* Cảnh báo */
+  --color-danger: #ef4444; /* Lỗi/Nguy hiểm */
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--color-bg-secondary);
+}

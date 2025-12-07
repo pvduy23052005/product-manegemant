@@ -1,4 +1,30 @@
 extends ../../layout/layoutDefault.pug
 
 block main 
-  h1 main content 1111111 . 
+  .container 
+    .container-category 
+      .title-category-header 
+        h4 Danh mục sản phẩm
+      .inner-category 
+        each item in categories 
+          .box-category 
+            img(src = item.thumbnail alt="Error" class = "image-category")
+            span(class = "title-category") #{item.title}
+
+    .container-product 
+      .title-product-header 
+        h4 Sản phẩm mới nhất
+      .row 
+        each item in products  
+          .col-3.mb-2
+            .box-item
+              .box-image 
+                span(class = "discount") -#{item.discountPercentage}%
+                a(href=`/product/${item._id}`) 
+                  img(src= item.thumbnail class = "image-product" alt=item.title)
+              .box-main 
+                a(href=`/product/${item._id}`) 
+                  span(class = "title") #{item.title}
+                span(class = "price") #{item.price} $
+      .see-more 
+        a(href="#" class = "btn-see-more") Xem thêm sản phẩm <i class="fa-solid fa-arrow-right"></i>

@@ -31,7 +31,8 @@ block main
 
             .form.-group.mb-3  
               label.mb-2(for="slug") Danh mục 
-              select(class = "form-control" name="parent_id" id="parent_id")  
+              select(class = "form-control" name="parent_id" id="parent_id") 
+                option(value="") --Danh mục cha-- 
                 each category in categories
                   option(value=category._id) #{category.title}
 

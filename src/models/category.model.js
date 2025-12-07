@@ -1,12 +1,14 @@
 const mongoose = require("mongoose");
+const slug = require("mongoose-slug-updater");
 
-// Schema đơn giản
+mongoose.plugin(slug);
+
 const categorySchema = new mongoose.Schema(
   {
     title: {
       type: String,
       required: true,
-      trim: true, // tuy chỉnh khoảng trắng ở đầu và cuối
+      trim: true,
     },
     description: {
       type: String,
@@ -14,6 +16,7 @@ const categorySchema = new mongoose.Schema(
     },
     parent_id: {
       type: String,
+      default: "",
     },
     thumbnail: {
       type: String,
@@ -39,15 +42,14 @@ const categorySchema = new mongoose.Schema(
     },
   },
   {
-    timestamps: true, // Tự động tạo createdAt và updatedAt
+    timestamps: true,
   }
 );
 
-// Tạo Model từ Schema
-const category = mongoose.model(
+const Category = mongoose.model(
   "Category",
   categorySchema,
   "products-category"
 );
 
-module.exports = category;
+module.exports = Category;

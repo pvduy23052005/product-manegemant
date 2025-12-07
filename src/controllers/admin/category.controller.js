@@ -50,7 +50,6 @@ module.exports.changeStatus = async (req, res) => {
 module.exports.changeMulti = async (req, res) => {
   const listIdItem = JSON.parse(req.body.listIdItem);
 
-  console.log(listIdItem);
   try {
     switch (listIdItem.statusChange) {
       case "active":
@@ -112,18 +111,19 @@ module.exports.create = async (req, res) => {
 //[post] /admin/category/create.
 module.exports.createPost = async (req, res) => {
   try {
-    const newCategory = new Category(req.body);
-
-    const countCategory = await Category.countDocuments();
-    if (newCategory.position) {
-      newCategory.position = parseInt(newCategory.position);
+    if (req.body.position) {
+      req.body.position = parseInt(req.body.position);
     } else {
-      newCategory.position = countCategory + 1;
+      const countCategory = await Category.countDocuments();
+      req.position = countCategory + 1;
     }
+
+    const newCategory = new Category(req.body);
 
     await newCategory.save();
     req.flash("success", "Tạo mới thành công");
   } catch (error) {
+    console.log(error);
     req.flash("error", "Vui lòng thử lại");
   }
   res.redirect("/admin/category");
