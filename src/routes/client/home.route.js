@@ -4,4 +4,6 @@ const controller = require("../../controllers/client/home.controller.js");
 
 router.get("/", controller.index);
 
+router.get("/product/detial/:slug", controller.detial);
+
 module.exports = router;

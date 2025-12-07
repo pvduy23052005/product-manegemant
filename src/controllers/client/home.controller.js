@@ -12,10 +12,29 @@ module.exports.index = async (req, res) => {
     "-createBy  -updatedBy  -deletedBy"
   );
   const categories = await Category.find(find);
-  
+
   res.render("client/pages/home/index", {
     title: "Home",
     products: products,
-    categories : categories
+    categories: categories,
   });
+};
+
+// [get] /product/detial/:slug.
+module.exports.detial = async (req, res) => {
+  try {
+    const slug = req.params.slug;
+
+    const product = await Product.findOne({
+      slug: slug,
+    });
+
+    console.log(product);
+    res.render("client/pages/product/detial.pug", {
+      title: product.slug,
+      product: product,
+    });
+  } catch (error) {
+    console.log(error);
+  }
 };

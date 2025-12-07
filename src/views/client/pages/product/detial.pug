@@ -1,0 +1,30 @@
+extends ../../layout/layoutDefault.pug
+
+block main
+  .container  
+    .box-detial 
+      .row 
+        h2(class = "title") #{product.title}
+      .row 
+        .col-5
+          .box-image 
+            img(src=product.thumbnail, alt="")
+        .col-7   
+          .box-info   
+              span(class = "product-id text") Mã sản phẩm: #{product.id}
+              span(class = "stock text") Tình trạng: #{product.stock > 0 ? 'Còn hàng' : 'Hết hàng'}  
+              .row 
+                span(class = "product-price-title text") Giá: 
+                span(class = "price") #{product.price} $
+
+              span(class = "quantity-title text") Số lượng mua: 
+              input(type="number"  min="1" value="1" class="quantity")
+              button(class = "btn-add-cart") Thêm vào giỏ hàng
+    .box-decription 
+      .row 
+        .col-12 
+          h3 Mô tả sản phẩm
+      .row 
+        .col-12
+          p(class ="description") !{product.description}
+

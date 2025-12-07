@@ -2,6 +2,7 @@ extends ../../layout/layoutDefault.pug
 
 block main 
   .container 
+    //-  category
     .container-category 
       .title-category-header 
         h4 Danh mục sản phẩm
@@ -11,6 +12,7 @@ block main
             img(src = item.thumbnail alt="Error" class = "image-category")
             span(class = "title-category") #{item.title}
 
+    //- container-product
     .container-product 
       .title-product-header 
         h4 Sản phẩm mới nhất
@@ -20,10 +22,10 @@ block main
             .box-item
               .box-image 
                 span(class = "discount") -#{item.discountPercentage}%
-                a(href=`/product/${item._id}`) 
+                a(href=`/product/detial/${item.slug}`) 
                   img(src= item.thumbnail class = "image-product" alt=item.title)
               .box-main 
-                a(href=`/product/${item._id}`) 
+                a(href=`/product/detial/${item.slug}`) 
                   span(class = "title") #{item.title}
                 span(class = "price") #{item.price} $
       .see-more 

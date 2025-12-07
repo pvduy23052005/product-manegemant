@@ -288,7 +288,7 @@
   transition: all 0.3s ease;
 }
 
-.container-category .inner-category .box-category:hover{
+.container-category .inner-category .box-category:hover {
   transform: translateY(-10px);
 }
 .container-category .inner-category .box-category .image-category {
@@ -304,5 +304,99 @@
   font-size: 16px;
   font-weight: 600;
 }
-
 /* end container-category */
+
+/* detial-product */
+.box-detial {
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-bg-sidebar);
+  box-shadow: var(--item-box-shadow);
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 30px;
+}
+
+.box-detial .title {
+  font-size: 36px;
+  color: var(--color-primary-hover);
+  border-bottom: 3px solid var(--color-primary-hover);
+  margin-bottom: 20px;
+}
+
+.box-detial .box-image {
+  width: 100%;
+  height: 400px;
+  margin-right: 20px;
+}
+
+.box-detial .box-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.box-detial .box-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.box-detial .box-info .text {
+  font-size: 18px;
+  margin-bottom: 20px;
+  font-weight: 500;
+  color: #141313db;
+}
+
+.box-detial .box-info .product-price-title {
+  margin-bottom: 10px;
+}
+
+.box-detial .box-info .price {
+  font-size: 24px;
+  color: var(--color-danger);
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.box-detial .box-info .quantity-title {
+  margin-bottom: 10px;
+}
+
+.box-detial .box-info .quantity {
+  width: 100px;
+  padding: 5px;
+  border: 1px solid var(--color-primary-light);
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.box-detial .box-info .btn-add-cart {
+  padding: 10px 20px;
+  background-color: var(--color-primary-hover);
+  color: var(--color-bg-primary);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.box-detial .box-info .btn-add-cart:hover {
+  background-color: var(--color-primary);
+}
+
+.box-decription{
+  background-color: var(--color-bg-sidebar);
+  box-shadow: var(--item-box-shadow);
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 40px;
+}
+
+.box-decription .description{
+  font-size : 18px ; 
+  text-align: justify;
+}
+/* end detial-product */
