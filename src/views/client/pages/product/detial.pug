@@ -16,10 +16,12 @@ block main
               .row 
                 span(class = "product-price-title text") Giá: 
                 span(class = "price") #{product.price} $
-
-              span(class = "quantity-title text") Số lượng mua: 
-              input(type="number"  min="1" value="1" class="quantity")
-              button(class = "btn-add-cart") Thêm vào giỏ hàng
+              .row
+                form(action=`/cart/add/${product.id}`, method="post") 
+                  label.mb-3(class = "quantity-title text") Số lượng mua:
+                  .form-group
+                    input(type="number" name = "quantity"  min="1" value="1" class="quantity")
+                  button(class = "btn-add-cart") Thêm vào giỏ hàng
     .box-decription 
       .row 
         .col-12 

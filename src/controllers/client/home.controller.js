@@ -29,7 +29,6 @@ module.exports.detial = async (req, res) => {
       slug: slug,
     });
 
-    console.log(product);
     res.render("client/pages/product/detial.pug", {
       title: product.slug,
       product: product,
