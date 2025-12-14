@@ -13,5 +13,15 @@ module.exports.cartMiddlewares = async (req, res, next) => {
     });
   }
 
+  let count = 0;
+  const cart = await Cart.findOne({
+    _id: cartId,
+  });
+  for (product of cart.products) {
+    count += parseInt(product.quantity);
+  }
+
+  res.locals.quantityProduct = count;
+
   next();
 };

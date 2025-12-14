@@ -4,4 +4,6 @@ const controller = require("../../controllers/client/cart.controller.js");
 
 router.post("/add/:id", controller.addPost);
 
+router.get("/", controller.index);
+
 module.exports = router;

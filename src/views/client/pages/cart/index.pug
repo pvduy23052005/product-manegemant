@@ -1,0 +1,59 @@
+extends ../../layout/layoutDefault.pug
+
+block main
+  .container.my-3
+    .container-cart 
+      .title-category-header 
+        h4 Sản phẩm của bạn
+      .inner-cart 
+        .row
+          .col-12
+            if products.length > 0
+              table(class="table table-bordered")
+                thead
+                  tr
+                    th STT
+                    th Ảnh
+                    th Tên sản phẩm
+                    th Giá
+                    th Số lượng
+                    th Tổng tiền
+                    th Hành động
+                tbody
+                  each item, index in products
+                    tr
+                      td #{index + 1}
+                      td
+                        img(
+                          src=item.thumbnail
+                          alt=item.title
+                          width="80px"
+                        )
+                      td
+                        a(href=`/products/detail/${item.slug}`) #{item.title}
+                      td #{item.newPrice}$
+                      td
+                        input(
+                          type="number"
+                          name="quantity"
+                          value=item.quantity
+                          min="1"
+                          product-id=item.product_id
+                          style="width: 60px"
+                        )
+                      td #{item.quantity * item.newPrice}$
+                      td
+                        a(
+                          href=`/cart/delete/${item.product_id}`
+                          class="btn btn-danger"
+                        ) Xóa
+
+              h4(class="text-right") Tổng tiền: #{totalPrice}$
+
+              div(class="text-right mt-3")
+                a(href="/checkout" class="btn btn-success") Thanh toán
+
+            else
+              div(class="alert alert-warning")
+                | Giỏ hàng của bạn đang trống. 
+                a(href="/products") Mua sắm ngay!

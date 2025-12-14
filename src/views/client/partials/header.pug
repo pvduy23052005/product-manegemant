@@ -12,8 +12,11 @@
           li 
             a(href="") 
               i(class = "fa-regular fa-user text")
+
           li  
-            a(href="")
+            a(href="/cart")
               i(class = "fa-solid fa-cart-shopping text")
+                span(class = "quantity-product") #{(quantityProduct ? quantityProduct : 0 )}
+
 
 
