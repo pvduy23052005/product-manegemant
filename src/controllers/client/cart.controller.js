@@ -77,3 +77,27 @@ module.exports.index = async (req, res) => {
     totalPrice: totalPrice,
   });
 };
+
+// [get] /cart/delete/:id .
+
+module.exports.deleteProduct = async (req, res) => {
+  const productId = req.params.id;
+  const cartId = req.cookies.cartId;
+
+  try {
+    await Cart.updateOne(
+      {
+        _id: cartId,
+      },
+      {
+        $pull: {
+          products: { product_id: productId },
+        },
+      }
+    );
+    req.flash("success", "Xóa thành công");
+    res.redirect("/cart");
+  } catch (error) {
+    req.flash("success", "Vui lòng thử lại");
+  }
+};

@@ -38,13 +38,13 @@ block main
                           name="quantity"
                           value=item.quantity
                           min="1"
-                          product-id=item.product_id
+                          product-id=item.id
                           style="width: 60px"
                         )
                       td #{item.quantity * item.newPrice}$
                       td
                         a(
-                          href=`/cart/delete/${item.product_id}`
+                          href=`/cart/delete/${item.id}`
                           class="btn btn-danger"
                         ) Xóa
 
@@ -56,4 +56,4 @@ block main
             else
               div(class="alert alert-warning")
                 | Giỏ hàng của bạn đang trống. 
-                a(href="/products") Mua sắm ngay!
+                a(href="/") Mua sắm ngay!
