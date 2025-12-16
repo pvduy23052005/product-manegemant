@@ -79,7 +79,6 @@ module.exports.index = async (req, res) => {
 };
 
 // [get] /cart/delete/:id .
-
 module.exports.deleteProduct = async (req, res) => {
   const productId = req.params.id;
   const cartId = req.cookies.cartId;
@@ -100,4 +99,30 @@ module.exports.deleteProduct = async (req, res) => {
   } catch (error) {
     req.flash("success", "Vui lòng thử lại");
   }
+};
+
+//// [get] /cart/update/:id/quanity.
+module.exports.updateQuanity = async (req, res) => {
+  const id = req.params.id;
+  const quantity = req.params.quanity;
+  const cartId = req.cookies.cartId;
+
+  try {
+    if (quantity < 1) return res.redirect("/cart");
+    await Cart.updateOne(
+      {
+        _id: cartId,
+        "products.product_id": id,
+      },
+      {
+        $set: {
+          "products.$.quantity": quantity,
+        },
+      }
+    );
+    req.flash("success", "Cập nhật thành công");
+  } catch (error) {
+    req.flash("success", "Vui lòng thử lại");
+  }
+  res.redirect("/cart");
 };
