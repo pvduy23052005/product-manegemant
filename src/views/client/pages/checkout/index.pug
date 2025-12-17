@@ -1,0 +1,71 @@
+extends ../../layout/layoutDefault.pug
+
+block main
+  .container.my-3
+    .container-cart 
+      .title-category-header 
+        h4 Sản phẩm của bạn
+      .inner-cart 
+        .row
+          .col-12
+            if products.length > 0
+              table(class="table table-bordered")
+                thead
+                  tr
+                    th STT
+                    th Ảnh
+                    th Tên sản phẩm
+                    th Giá
+                    th Số lượng
+                    th Tổng tiền
+                tbody
+                  each item, index in products
+                    tr
+                      td #{index + 1}
+                      td
+                        img(
+                          src=item.thumbnail
+                          alt=item.title
+                          width="80px"
+                        )
+                      td
+                        a(href=`/products/detail/${item.slug}`) #{item.title}
+                      td #{item.newPrice}$
+                      td
+                        input(
+                          type="number"
+                          name="quantity"
+                          value=item.quantity
+                          min="1"
+                          product-id=item.id
+                          style="width: 60px"
+                        )
+                      td #{item.quantity * item.newPrice}$
+
+              h4(class="text-right") Tổng tiền: #{totalPrice}$
+
+
+            else
+              div(class="alert alert-warning")
+                | Giỏ hàng của bạn đang trống. 
+                a(href="/") Mua sắm ngay!
+    .container-cart.mt-5
+      .title-category-header 
+        h4 Sản phẩm của bạn
+      .inner-cart-order
+        form(action="/checkout/order" method="post") 
+          .form-group.mb-3
+            input(type="email" name = "email" class = "form-control" placeHolder = "Email")
+          .form-group.mb-3
+            input(type="text" name = "fullName" class = "form-control" placeHolder = "Họ và tên")
+          .form-group.mb-3
+            input(type="text" name = "phone" class = "form-control" placeHolder = "Số điện thoại")
+          .form-group.mb-3
+            input(type="text" name = "address" class = "form-control" placeHolder = "Địa chỉ nhận")
+
+          .form-group 
+            button(type = "submit" class="btn btn-success") Thanh toán
+
+
+block script 
+  script(src="/client/js/cart.js") 

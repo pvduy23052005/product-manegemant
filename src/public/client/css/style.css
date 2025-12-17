@@ -433,6 +433,11 @@
   width: 100%;
 }
 
+.container-cart .inner-cart-order{
+  padding-left: 200px;
+  padding-right: 200px;
+}
+
 .container-cart table {
   width: 100%;
 }
