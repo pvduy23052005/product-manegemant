@@ -60,7 +60,7 @@ module.exports.registerPost = async (req, res) => {
     if (password != passwordConfirm) {
       req.flash("error", "Xác nhận password không đúng");
       res.redirect("/user/register");
-      return ; 
+      return;
     }
 
     password = md5(password);
@@ -77,4 +77,12 @@ module.exports.registerPost = async (req, res) => {
   } catch (error) {
     console.log(error);
   }
+};
+
+// [get] /user/logout
+module.exports.logout = async (req, res) => {
+  try {
+    res.clearCookie("tokenUser");
+    res.redirect("/");
+  } catch (error) {}
 };

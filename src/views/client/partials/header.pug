@@ -10,8 +10,12 @@
       .header-user 
         ul
           li 
-            a(href="/user/login") 
-              i(class = "fa-regular fa-user text")
+            if user
+              a(href="/user/logout") 
+                i(class='bx bx-arrow-out-right-square-half text')
+            else 
+              a(href="/user/login") 
+                i(class = "fa-regular fa-user text")
 
           li  
             a(href="/cart")
