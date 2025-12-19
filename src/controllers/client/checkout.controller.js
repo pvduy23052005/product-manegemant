@@ -75,10 +75,8 @@ module.exports.checkoutPost = async (req, res) => {
       product.quantity = item.quantity;
       product.product_id = item.product_id;
 
-      products.push(product);
     }
 
-    console.log(products);
     const order = {
       user_id: "",
       cart_id: cartId,
