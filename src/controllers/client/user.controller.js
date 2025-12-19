@@ -2,7 +2,7 @@ const User = require("../../models/user.model");
 const md5 = require("md5");
 
 // [get] /user/login
-module.exports.index = (req, res) => {
+module.exports.login = (req, res) => {
   res.render("client/pages/user/login");
 };
 
@@ -33,7 +33,47 @@ module.exports.loginPost = async (req, res) => {
 
     res.cookie("tokenUser", user.tokenUser);
 
-    res.send("ok");
+    res.redirect("/");
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// [get] /user/register
+module.exports.register = async (req, res) => {
+  res.render("client/pages/user/register");
+};
+
+// [post] /user/register
+module.exports.registerPost = async (req, res) => {
+  let { email, password, fullName, passwordConfirm } = req.body;
+  try {
+    const user = await User.findOne({
+      email: email,
+    });
+
+    if (user) {
+      req.flash("error", "Email đã tồn tại");
+      res.redirect("/user/register");
+      return;
+    }
+    if (password != passwordConfirm) {
+      req.flash("error", "Xác nhận password không đúng");
+      res.redirect("/user/register");
+      return ; 
+    }
+
+    password = md5(password);
+    const userObject = {
+      fullName: fullName,
+      email: email,
+      password: password,
+    };
+
+    const newUser = new User(userObject);
+    newUser.save();
+    res.cookie("tokenUser", newUser.tokenUser);
+    res.redirect("/");
   } catch (error) {
     console.log(error);
   }
