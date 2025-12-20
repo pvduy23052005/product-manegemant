@@ -644,6 +644,12 @@ body {
   height: 20px;
 }
 
+.forgot-password {
+  margin-top : 10px;
+  font-size: 14px;
+  color: var(--color-text-placeholder);
+}
+
 .signup-link {
   text-align: center;
   margin-top: 24px;
