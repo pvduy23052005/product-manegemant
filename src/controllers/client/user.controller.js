@@ -190,10 +190,10 @@ module.exports.resetPassword = (req, res) => {
 
 // [post] /user/password/reset .
 module.exports.resetPasswordPost = async (req, res) => {
-  const { password, confirmPassword } = req.body;
+  const { password, passwordConfirm } = req.body;
   const tokenUser = req.cookies.tokenUser;
 
-  if (password != confirmPassword) {
+  if (password != passwordConfirm) {
     req.flash("error", "Mật khẩu không khớp");
     res.redirect("/user/password/reset");
   }
