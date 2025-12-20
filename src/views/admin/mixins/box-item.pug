@@ -46,8 +46,12 @@ mixin box-item(listItem  , title , keySearch = "")
             //-     option(value="price-desc") Giá giảm dần
 
           .col-1.col-md-1
-            div(class = "box-menu box-menu-icon")
+            div(
+              class = "box-menu box-menu-icon" 
+              id = "icon-clear"
+              )
               i(class = "fa-solid fa-rotate text")
+              
       .container-header-item
         .row 
           .col-1.text 

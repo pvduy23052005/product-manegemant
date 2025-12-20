@@ -343,3 +343,13 @@ if (dataPermissions) {
   });
 }
 // end role permission
+
+// clear
+const clearUrl = document.querySelector(".box-menu-icon");
+if (clearUrl) {
+  clearUrl.addEventListener("click", () => {
+    const cleanUrl = window.location.origin + window.location.pathname;
+    window.location.href = cleanUrl;
+  });
+}
+// end clear
