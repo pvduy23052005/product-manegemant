@@ -1,4 +1,184 @@
-extend ../../layout/layoutDefault.pug
+extends ../../layout/layoutDefault.pug
 
-block main 
-  h1  Dashbboard .
+block main
+  .container-fluid.py-4
+    h1.mb-4 Dashboard
+
+    //- Statistics Cards
+    .row.g-4.mb-4
+      //- Total Users (Customers)
+      .col-xl-3.col-md-6
+        .card.border-0.shadow-sm.h-100
+          .card-body
+            .d-flex.justify-content-between.align-items-center
+              div
+                .text-muted.small.mb-1 Khách hàng
+                h3.mb-0= statistic.users.total
+                .small.text-success
+                  i.fas.fa-user-plus
+                  |  #{statistic.users.newToday} mới hôm nay
+              .bg-primary.bg-opacity-10.rounded-circle.p-3
+                i.fas.fa-users.fa-2x.text-primary
+
+      //- Total Products
+      .col-xl-3.col-md-6
+        .card.border-0.shadow-sm.h-100
+          .card-body
+            .d-flex.justify-content-between.align-items-center
+              div
+                .text-muted.small.mb-1 Tổng sản phẩm
+                h3.mb-0= statistic.products.total
+                .small.text-warning
+                  i.fas.fa-exclamation-circle
+                  |  #{statistic.products.outOfStock} hết hàng
+              .bg-success.bg-opacity-10.rounded-circle.p-3
+                i.fas.fa-box.fa-2x.text-success
+
+      //- Total Orders
+      .col-xl-3.col-md-6
+        .card.border-0.shadow-sm.h-100
+          .card-body
+            .d-flex.justify-content-between.align-items-center
+              div
+                .text-muted.small.mb-1 Tổng đơn hàng
+                h3.mb-0= statistic.orders.total
+                .small.text-info
+                  i.fas.fa-clock
+                  |  #{statistic.orders.todayOrders} hôm nay
+              .bg-info.bg-opacity-10.rounded-circle.p-3
+                i.fas.fa-shopping-cart.fa-2x.text-info
+
+      //- Total Revenue
+      .col-xl-3.col-md-6
+        .card.border-0.shadow-sm.h-100
+          .card-body
+            .d-flex.justify-content-between.align-items-center
+              div
+                .text-muted.small.mb-1 Tổng doanh thu
+                h3.mb-0= statistic.orders.totalRevenue.toLocaleString('vi-VN') + ' đ'
+                .small.text-success
+                  i.fas.fa-money-bill-wave
+                  |  #{statistic.orders.todayRevenue.toLocaleString('vi-VN')} đ hôm nay
+              .bg-warning.bg-opacity-10.rounded-circle.p-3
+                i.fas.fa-dollar-sign.fa-2x.text-warning
+
+    //- Charts and Tables Row
+    .row.g-4.mb-4
+      //- Top Products
+      .col-xl-6
+        .card.border-0.shadow-sm
+          .card-header.bg-white.border-0.py-3
+            h5.mb-0
+              i.fas.fa-fire.me-2
+              | Top 5 sản phẩm bán chạy
+          .card-body.p-0
+            .list-group.list-group-flush
+              each product in topProducts
+                .list-group-item.border-0
+                  .d-flex.align-items-center
+                    if product.thumbnail
+                      img.rounded.me-3(
+                        src=product.thumbnail
+                        alt=product.title
+                        style="width: 50px; height: 50px; object-fit: cover;"
+                      )
+                    else
+                      .bg-secondary.rounded.me-3(style="width: 50px; height: 50px;")
+                    div.flex-grow-1
+                      .fw-bold.text-truncate(style="max-width: 200px;")= product.title
+                      .small.text-muted
+                        | Đã bán: #{product.totalQuantity} | 
+                        span.text-success= product.totalRevenue.toLocaleString('vi-VN') + ' đ'
+
+      //- Additional Stats
+      .col-xl-6
+        .card.border-0.shadow-sm
+          .card-header.bg-white.border-0.py-3
+            h5.mb-0
+              i.fas.fa-chart-pie.me-2
+              | Thống kê khác
+          .card-body
+            .row.g-3
+              .col-6
+                .border.rounded.p-3.text-center
+                  .text-muted.small Admin
+                  .h4.mb-0.text-primary= statistic.accounts.total
+                  .small.text-success #{statistic.accounts.active} hoạt động
+              .col-6
+                .border.rounded.p-3.text-center
+                  .text-muted.small Khách hàng mới tháng này
+                  .h4.mb-0.text-info= statistic.users.newThisMonth
+                  .small.text-muted #{statistic.users.newToday} hôm nay
+              .col-6
+                .border.rounded.p-3.text-center
+                  .text-muted.small Sản phẩm hoạt động
+                  .h4.mb-0.text-success= statistic.products.active
+                  .small.text-danger #{statistic.products.inactive} không hoạt động
+              .col-6
+                .border.rounded.p-3.text-center
+                  .text-muted.small Đơn hàng hôm nay
+                  .h4.mb-0.text-warning= statistic.orders.todayOrders
+                  .small.text-success= statistic.orders.todayRevenue.toLocaleString('vi-VN') + ' đ'
+
+    //- Top Customers
+    .row.g-4.mb-4
+      .col-xl-12
+        .card.border-0.shadow-sm
+          .card-header.bg-white.border-0.py-3
+            h5.mb-0
+              i.fas.fa-crown.me-2
+              | Top 5 khách hàng VIP
+          .card-body.p-0
+            .list-group.list-group-flush
+              each customer in topCustomers
+                .list-group-item.border-0
+                  .d-flex.justify-content-between.align-items-center
+                    div
+                      .fw-bold= customer.fullName
+                      .small.text-muted
+                        i.fas.fa-envelope.me-1
+                        = customer._id
+                      .small.text-muted
+                        i.fas.fa-phone.me-1
+                        = customer.phone
+                    div.text-end
+                      .badge.bg-primary.mb-1= customer.totalOrders + ' đơn'
+                      .fw-bold.text-success.small= customer.totalSpent.toLocaleString('vi-VN') + ' đ'
+
+    //- Recent Orders Table
+    .row.g-4
+      .col-12
+        .card.border-0.shadow-sm
+          .card-header.bg-white.border-0.py-3
+            h5.mb-0
+              i.fas.fa-receipt.me-2
+              | Đơn hàng gần đây
+          .card-body.p-0
+            .table-responsive
+              table.table.table-hover.mb-0
+                thead.table-light
+                  tr
+                    th(scope="col") #
+                    th(scope="col") Khách hàng
+                    th(scope="col") Email
+                    th(scope="col") Số điện thoại
+                    th(scope="col") Sản phẩm
+                    th(scope="col") Ngày đặt
+                    th(scope="col") Tổng tiền
+                tbody
+                  each order, index in recentOrders
+                    tr
+                      td= index + 1
+                      td
+                        .fw-bold= order.userInfo.fullName
+                      td= order.userInfo.email
+                      td= order.userInfo.phone
+                      td
+                        span.badge.bg-primary= order.products.length + ' sản phẩm'
+                      td
+                        small= new Date(order.createdAt).toLocaleString('vi-VN', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' })
+                      td
+                        - var total = 0
+                        each item in order.products
+                          - total += item.price * (1 - item.discountPercentage/100) * item.quantity
+                        .fw-bold.text-success= total.toLocaleString('vi-VN') + ' đ'
