@@ -2,6 +2,7 @@ const User = require("../../models/user.model");
 const md5 = require("md5");
 const random = require("../../helpers/random");
 const ForgotPassword = require("../../models/forgot-password");
+const sendEmail = require("../../helpers/sendMail");
 
 // [get] /user/login
 module.exports.login = (req, res) => {
@@ -102,12 +103,10 @@ module.exports.forgotPasswordPost = async (req, res) => {
     const user = await User.findOne({
       email: email.toString(),
     }).select("-password");
-
     if (!user) {
       req.flash("error", "Email không tồn tại");
       return res.redirect("/user/password/forgot");
     }
-
     const objectOtp = {
       email: email,
       otp: random.randomNumber(6),
@@ -115,6 +114,32 @@ module.exports.forgotPasswordPost = async (req, res) => {
 
     const newOtp = ForgotPassword(objectOtp);
     await newOtp.save();
+
+    const subject = `[Xác thực] Mã OTP của bạn: ${newOtp.otp}`;
+
+    // Sử dụng template string để thiết kế layout chuyên nghiệp
+    let html = `
+      <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; border: 1px solid #e0e0e0; border-radius: 10px; overflow: hidden;">
+          <div style="background-color: #007bff; padding: 20px; text-align: center;">
+              <h1 style="color: #ffffff; margin: 0; font-size: 24px;">Xác Thực Tài Khoản</h1>
+          </div>
+          <div style="padding: 30px; background-color: #ffffff;">
+              <p>Xin chào,</p>
+              <p>Bạn đã yêu cầu mã xác thực OTP để hoàn tất đổi mật khẩu. Vui lòng sử dụng mã dưới đây:</p>
+              
+              <div style="text-align: center; margin: 30px 0;">
+                  <span style="display: inline-block; padding: 15px 30px; font-size: 32px; font-weight: bold; color: #007bff; background-color: #f0f7ff; border: 2px dashed #007bff; letter-spacing: 5px; border-radius: 5px;">
+                      ${newOtp.otp}
+                  </span>
+              </div>
+              
+              <p style="color: #ff0000; font-size: 14px;"><b>Lưu ý:</b> Mã này sẽ hết hạn sau 3 phút. Vui lòng không chia sẻ mã này cho bất kỳ ai để bảo mật tài khoản.</p>
+              <hr style="border: 0; border-top: 1px solid #eeeeee; margin: 20px 0;">
+              <p style="font-size: 12px; color: #888;">Nếu bạn không thực hiện yêu cầu này, vui lòng bỏ qua email này hoặc liên hệ hỗ trợ.</p>
+          </div>
+      </div>
+      `;
+    sendEmail.sendEmail(email, subject, html);
 
     res.redirect(`/user/password/otp?email=${email}`);
   } catch (error) {
@@ -168,7 +193,6 @@ module.exports.resetPasswordPost = async (req, res) => {
   const { password, confirmPassword } = req.body;
   const tokenUser = req.cookies.tokenUser;
 
-  console.log(password, confirmPassword);
   if (password != confirmPassword) {
     req.flash("error", "Mật khẩu không khớp");
     res.redirect("/user/password/reset");
