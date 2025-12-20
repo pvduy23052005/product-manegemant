@@ -2,7 +2,10 @@ extends ../../layout/layoutDefault.pug
 
 block main
   .container  
-    .box-detial 
+    .box-detial
+      if success.length > 0
+        .success-message#successMessage
+          | #{success}
       .row 
         h2(class = "title") #{product.title}
       .row 
@@ -11,17 +14,17 @@ block main
             img(src=product.thumbnail, alt="")
         .col-7   
           .box-info   
-              span(class = "product-id text") Mã sản phẩm: #{product.id}
-              span(class = "stock text") Tình trạng: #{product.stock > 0 ? 'Còn hàng' : 'Hết hàng'}  
-              .row 
-                span(class = "product-price-title text") Giá: 
-                span(class = "price") #{product.price} $
-              .row
-                form(action=`/cart/add/${product.id}`, method="post") 
-                  label.mb-3(class = "quantity-title text") Số lượng mua:
-                  .form-group
-                    input(type="number" name = "quantity"  min="1" value="1" class="quantity")
-                  button(class = "btn-add-cart") Thêm vào giỏ hàng
+            span(class = "product-id text") Mã sản phẩm: #{product.id}
+            span(class = "stock text") Tình trạng: #{product.stock > 0 ? 'Còn hàng' : 'Hết hàng'}  
+            .row 
+              span(class = "product-price-title text") Giá: 
+              span(class = "price") #{product.price} $
+            .row
+              form(action=`/cart/add/${product.id}`, method="post") 
+                label.mb-3(class = "quantity-title text") Số lượng mua:
+                .form-group
+                  input(type="number" name = "quantity" min="1" value="1" class="quantity")
+                button(class = "btn-add-cart") Thêm vào giỏ hàng
     .box-decription 
       .row 
         .col-12 

@@ -107,18 +107,23 @@ if (inputThumbnail) {
 // end code products
 
 // show alert .
-const showAlert = document.querySelector("[show-alert]");
-if (showAlert) {
-  const time = parseInt(showAlert.getAttribute("data-time"));
+const errorMessage = document.getElementById("errorMessage");
+const successMessage = document.querySelector("#successMessage");
 
+if (errorMessage) {
+  errorMessage.classList.add("show");
   setTimeout(() => {
-    showAlert.classList.add("close-alert");
-  }, time);
-  const closeAlert = showAlert.querySelector("[close-alert]");
-  closeAlert.addEventListener("click", () => {
-    showAlert.classList.add("close-alert");
-  });
+    errorMessage.classList.remove("show");
+  }, 3000);
 }
+
+if (successMessage) {
+  successMessage.classList.add("show");
+  setTimeout(() => {
+    successMessage.classList.remove("show");
+  }, 3000);
+}
+
 // show alert .
 
 // select-change-status.

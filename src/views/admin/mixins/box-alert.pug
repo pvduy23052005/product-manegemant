@@ -1,23 +1,20 @@
 mixin box-alert-success(time = 5000 )
   if success.length > 0 
     div(
-      class = "show-alert success  "
+      class = "success-message"
       show-alert
       data-time = time
-    )
-      span #{success}
-      i(class="fa-solid fa-delete-left" close-alert)
-
+    )#successMessage
+      | #{success}
 
 mixin box-alert-error(time = 5000 )
   if error.length > 0  
     div(
-      class = "show-alert error "
+      class = "error-message"
       show-alert
       data-time = time
-    )
-      span #{error}
-      i(class="fa-solid fa-delete-left" close-alert)
+    )#errorMessage
+      | #{error}
 
 mixin box-alert-warning(time = 5000 )
   if  warning.length  > 0 
@@ -26,5 +23,5 @@ mixin box-alert-warning(time = 5000 )
       show-alert
       data-time = time
     )
-      span #{warning}
+      | #{warning}
       i(class="fa-solid fa-delete-left" close-alert)
