@@ -3,6 +3,7 @@ const md5 = require("md5");
 const random = require("../../helpers/random");
 const ForgotPassword = require("../../models/forgot-password");
 const sendEmail = require("../../helpers/sendMail");
+const Cart = require("../../models/cart.model");
 
 // [get] /user/login
 module.exports.login = (req, res) => {
@@ -32,6 +33,31 @@ module.exports.loginPost = async (req, res) => {
     if (user.password != md5(password)) {
       req.flash("error", "Password không chính xác");
       return res.redirect("/user/login");
+    }
+
+    const cart = await Cart.findOne({
+      user_id: user.id,
+    });
+
+    if (cart) {
+      res.cookie("cartId", cart.id);
+      await Cart.updateOne(
+        {
+          _id: cart.id,
+        },
+        {
+          user_id: user.id,
+        }
+      );
+    } else {
+      await Cart.updateOne(
+        {
+          _id: req.cookies.cartId,
+        },
+        {
+          user_id: user.id,
+        }
+      );
     }
 
     res.cookie("tokenUser", user.tokenUser);

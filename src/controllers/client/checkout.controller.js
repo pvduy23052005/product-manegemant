@@ -85,8 +85,6 @@ module.exports.checkoutPost = async (req, res) => {
       products: products,
     };
 
-    console.log(order);
-
     const newOrder = new Order(order);
     newOrder.save();
 

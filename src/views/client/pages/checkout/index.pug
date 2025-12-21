@@ -63,9 +63,9 @@ block main
       .inner-cart-order
         form(action="/checkout/order" method="post") 
           .form-group.mb-3
-            input(type="email"  name = "email" class = "form-control" placeHolder = "Email")
+            input(type="email"  name = "email" class = "form-control" placeHolder = "Email" value =(user ? user.email :""))
           .form-group.mb-3
-            input(type="text" name = "fullName" class = "form-control" placeHolder = "Họ và tên")
+            input(type="text" name = "fullName" class = "form-control" placeHolder = "Họ và tên" value = (user ?  user.fullName : ""))
           .form-group.mb-3
             input(type="text" name = "phone" class = "form-control" placeHolder = "Số điện thoại")
           .form-group.mb-3
