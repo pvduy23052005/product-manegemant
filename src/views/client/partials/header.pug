@@ -6,21 +6,35 @@
         span(class = "title text") Duy phung
       .header-search 
         i(class = "fa-solid fa-magnifying-glass icon-search text")
-        input(type="text" placeholder = "Search" class = "text")
+        input(type="text" placeholder = "Tìm kiếm" class = "text")
       .header-user 
         ul
-          li 
-            if user
-              a(href="/user/logout") 
-                i(class='bx bx-arrow-out-right-square-half text')
-            else 
-              a(href="/user/login") 
-                i(class = "fa-regular fa-user text")
-
           li  
             a(href="/cart")
               i(class = "fa-solid fa-cart-shopping text")
                 span(class = "quantity-product") #{(quantityProduct ? quantityProduct : 0 )}
+          li(class = "inner-sub")
+            i(class = "bx  bx-user-circle icon-sub")
+              ul(class = "sub-user") 
+                li 
+                  a(href="/user/profile") 
+                    i(class = "fa-regular fa-user")
+                    | Thông tin
+                if user
+                  li  
+                    a(href="/user/logout") 
+                      i(class='bx bx-arrow-out-right-square-half')
+                      span Đăng xuất
+                else
+                  li  
+                    a(href="/user/login") 
+                      i(class='bx bx-arrow-out-right-square-half')
+                      span Đăng nhập
+
+
+
+
+
 
 
 
