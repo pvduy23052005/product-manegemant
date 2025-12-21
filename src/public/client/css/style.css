@@ -131,88 +131,119 @@
 }
 
 /* products */
-
+/* --- CONTAINER CHÍNH --- */
 .container-product {
   width: 100%;
-  height: 100%;
+  height: auto; /* Đổi thành auto để co giãn theo nội dung */
   background-color: var(--color-bg-sidebar);
-  border: 8px;
-  padding: 10px;
+  border-radius: 8px; /* Sửa lỗi border: 8px của bạn thành border-radius */
+  padding: 20px;
   box-shadow: var(--item-box-shadow);
   margin-bottom: 30px;
 }
 
+/* --- HEADER TIÊU ĐỀ --- */
 .container-product .title-product-header {
   display: flex;
   align-items: center;
+  margin-bottom: 25px;
 }
 
 .container-product .title-product-header h4 {
   font-size: 25px;
+  font-weight: 700;
   color: var(--color-primary-hover);
-  margin-bottom: 20px;
+  margin: 0;
+  position: relative;
 }
 
 .container-product .title-product-header h4::before {
   content: "";
-  width: 5px;
-  background-color: var(--color-primary-hover);
-  height: 20px;
   display: inline-block;
+  width: 5px;
+  height: 25px;
+  background-color: var(--color-primary-hover);
   margin-right: 15px;
+  vertical-align: middle;
+  border-radius: 2px;
 }
 
+/* --- BOX SẢN PHẨM (Được cải tiến) --- */
 .container-product .box-item {
+  background-color: #fff; /* Thêm nền trắng để sản phẩm nổi trên nền sidebar */
   width: 100%;
-  height: 100%;
-  margin-bottom: 10px;
+  height: 100%; 
+  margin-bottom: 20px;
   transition: all 0.3s ease;
   position: relative;
   box-shadow: var(--item-box-shadow);
   border-radius: 8px;
   overflow: hidden;
+  display: flex; 
+  flex-direction: column;
 }
 
 .container-product .box-item:hover {
   transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Shadow đậm hơn chút khi hover */
 }
 
 .container-product .box-item .box-image {
   width: 100%;
   position: relative;
-  height: 150x;
-  padding: 15px;
+  padding-top: 100%; 
+  overflow: hidden;
 }
 
+.container-product .box-item .box-image img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; 
+  transition: transform 0.5s ease;
+}
+
+.container-product .box-item:hover .box-image img {
+  transform: scale(1.1); /* Zoom nhẹ khi hover */
+}
+
+/* --- NHÃN GIẢM GIÁ --- */
 .container-product .box-item .box-image .discount {
   position: absolute;
   top: 0;
   right: 0;
   background-color: var(--color-primary-hover);
   color: var(--color-bg-sidebar);
-  font-size: 14px;
-  padding: 3px;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 4px 8px;
   border-bottom-left-radius: 8px;
+  z-index: 2;
 }
 
-.container-product .box-item .box-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
+/* --- NỘI DUNG SẢN PHẨM --- */
 .container-product .box-item .box-main {
+  padding: 15px;
   display: flex;
   flex-direction: column;
-  padding: 10px;
-  padding-bottom: 5px;
+  flex: 1; /* Đẩy phần này chiếm hết khoảng trống còn lại */
 }
 
 .container-product .box-item .box-main .title {
   font-size: 16px;
+  font-weight: 600;
   color: var(--color-text-primary);
   margin-bottom: 10px;
-  flex: 1;
+  display: block;
+  text-decoration: none;
+
+  /* Cắt dòng nếu tên quá dài (tối đa 2 dòng) */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  line-height: 1.4;
 }
 
 .container-product .box-item .box-main .title:hover {
@@ -220,103 +251,47 @@
 }
 
 .container-product .box-item .box-main .price {
-  font-weight: 600;
+  font-weight: 700;
+  color: var(--color-primary-hover); /* Dùng màu chính cho giá để nổi bật */
+  font-size: 18px;
+  margin-top: auto; /* Đẩy giá xuống đáy card */
 }
 
 .container-product .see-more {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
 .container-product .see-more .btn-see-more {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 10px 20px;
-  border: 1px solid var(--color-primary-hover);
-  border-radius: 5px;
+  padding: 10px 30px;
+  border: 2px solid var(--color-primary-hover); /* Viền dày hơn chút cho đẹp */
+  border-radius: 50px; /* Bo tròn kiểu viên thuốc */
   color: var(--color-primary-hover);
-  transition: all 0.3 ease;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  background-color: transparent;
 }
 
 .container-product .see-more .btn-see-more:hover {
-  color: var(--color-bg-primary);
+  color: var(--color-bg-primary); /* Màu chữ khi hover (từ biến cũ của bạn) */
   background-color: var(--color-primary-hover);
 }
 
+.container-product .see-more .btn-see-more i {
+  margin-left: 8px;
+  transition: transform 0.3s ease;
+}
+
+.container-product .see-more .btn-see-more:hover i {
+  transform: translateX(5px); /* Mũi tên chạy sang phải khi hover */
+}
 /* end products */
-
-/* container-category */
-.container-category {
-  background-color: var(--color-bg-sidebar);
-  border-radius: 5px;
-  margin-bottom: 20px;
-  padding: 10px 10px;
-  box-shadow: var(--item-box-shadow);
-}
-
-.container-category .title-category-header {
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.container-category .title-category-header h4 {
-  color: var(--color-primary-hover);
-  display: flex;
-  align-items: center;
-}
-
-.container-category .title-category-header h4::before {
-  content: "";
-  width: 5px;
-  background-color: var(--color-primary-hover);
-  height: 20px;
-  display: inline-block;
-  margin-right: 15px;
-}
-
-.container-category .inner-category {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.container-category .inner-category .box-category {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  width: calc(100% / 6);
-  height: 150px;
-  position: relative;
-  box-shadow: var(--item-box-shadow);
-  margin: 5px;
-  border-radius: 8px;
-  text-align: center;
-  transition: all 0.3s ease;
-}
-
-.container-category .inner-category .box-category:hover {
-  transform: translateY(-10px);
-}
-.container-category .inner-category .box-category .image-category {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  padding-top: 10px;
-}
-
-.container-category .title-category {
-  color: var(--color-text-primary);
-  padding: 10px 0;
-  font-size: 16px;
-  font-weight: 600;
-}
-/* end container-category */
 
 /* detial-product */
 .box-detial {
@@ -498,3 +473,129 @@
   }
 }
 /*  end alert error */
+
+/*  container-category */
+.container-category {
+  background-color: var(--color-bg-sidebar);
+  border-radius: 5px;
+  margin-bottom: 20px;
+  padding: 10px 10px;
+  box-shadow: var(--item-box-shadow);
+}
+
+.container-category .title-category-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.container-category .title-category-header h4 {
+  color: var(--color-primary-hover);
+  display: flex;
+  align-items: center;
+}
+
+.container-category .title-category-header h4::before {
+  content: "";
+  width: 5px;
+  background-color: var(--color-primary-hover);
+  height: 20px;
+  display: inline-block;
+  margin-right: 15px;
+}
+
+/* Inner category với cuộn ngang */
+.container-category .inner-category {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  padding: 5px 0;
+}
+
+/* Custom scrollbar */
+.container-category .inner-category::-webkit-scrollbar {
+  height: 6px;
+}
+
+.container-category .inner-category::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.container-category .inner-category::-webkit-scrollbar-thumb {
+  background: var(--color-primary-hover);
+  border-radius: 10px;
+}
+
+.container-category .inner-category::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary);
+}
+
+/* Firefox scrollbar */
+.container-category .inner-category {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-primary-hover) #f1f1f1;
+}
+
+.container-category .inner-category .box-category {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  min-width: 180px;
+  flex-shrink: 0;
+  height: 150px;
+  position: relative;
+  box-shadow: var(--item-box-shadow);
+  border-radius: 8px;
+  text-align: center;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.container-category .inner-category .box-category:hover {
+  transform: translateY(-10px);
+}
+
+.container-category .inner-category .box-category .image-category {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding-top: 10px;
+}
+
+.container-category .title-category {
+  color: var(--color-text-primary);
+  padding: 10px 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .container-category .inner-category .box-category {
+    min-width: 150px;
+    height: 130px;
+  }
+
+  .container-category .title-category {
+    font-size: 14px;
+    padding: 8px 0;
+  }
+}
+
+@media (max-width: 576px) {
+  .container-category .inner-category .box-category {
+    min-width: 130px;
+    height: 120px;
+  }
+
+  .container-category .title-category {
+    font-size: 13px;
+  }
+}
+/* end container-category */

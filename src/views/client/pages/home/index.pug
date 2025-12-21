@@ -3,30 +3,40 @@ extends ../../layout/layoutDefault.pug
 block main 
   .container 
     //-  category
-    .container-category 
-      .title-category-header 
+    .container-category
+      .title-category-header
         h4 Danh mục sản phẩm
-      .inner-category 
-        each item in categories 
-          .box-category 
-            img(src = item.thumbnail alt="Error" class = "image-category")
-            span(class = "title-category") #{item.title}
+
+
+      .inner-category#categoryScroll
+        each item in categories
+          a.box-category(href=`/products/category/${item.slug}`)
+            img.image-category(src=item.thumbnail alt=item.title)
+            span.title-category= item.title
 
     //- container-product
     .container-product 
       .title-product-header 
         h4 Sản phẩm mới nhất
+      
       .row 
         each item in products  
-          .col-3.mb-2
+          .col-xl-2.col-lg-3.col-md-4.col-sm-6.mb-4
             .box-item
               .box-image 
-                span(class = "discount") -#{item.discountPercentage}%
+                if item.discountPercentage > 0
+                  span.discount -#{item.discountPercentage}%
                 a(href=`/product/detail/${item.slug}`) 
-                  img(src= item.thumbnail class = "image-product" alt=item.title)
+                  img.image-product(src=item.thumbnail alt=item.title)
+              
               .box-main 
-                a(href=`/product/detail/${item.slug}`) 
-                  span(class = "title") #{item.title}
-                span(class = "price") #{(item.price.toLocaleString('vi-VN') + ' đ')} $
+                a.title-link(href=`/product/detail/${item.slug}`) 
+                  h5.title #{item.title}
+                
+                .price-group
+                  span.price-new #{(item.price * (1 - item.discountPercentage/100)).toLocaleString('vi-VN')}đ
+
       .see-more 
-        a(href="#" class = "btn-see-more") Xem thêm sản phẩm <i class="fa-solid fa-arrow-right"></i>
+        a.btn-see-more(href="#") 
+          | Xem thêm 
+          i.fa-solid.fa-arrow-right.ms-2

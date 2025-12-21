@@ -30,8 +30,8 @@ block main
 
             .form-group.mb-3 
               label.mb-2(for="category") Danh mục sản phẩm
-              select(class = "form-control" name="category" id="category" required)
-                option(value="" disabled selected) -- Chọn danh mục --
+              select(class = "form-select" name="category" id="category" required)
+                option(value=""  disabled selected) -- Chọn danh mục --
                 each category in categories
                   option(value=category.id) #{category.title}
 

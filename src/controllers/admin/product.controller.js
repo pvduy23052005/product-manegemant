@@ -119,10 +119,15 @@ module.exports.edit = async (req, res) => {
   };
 
   const product = await Product.findOne(find);
+  const categories = await Category.find({
+    deleted: false,
+    status: "active",
+  }).sort({ createdAt: -1 }).select("title");
 
   res.render("admin/pages/product/edit", {
     title: "edit product",
     product: product,
+    categories : categories
   });
 };
 

@@ -30,6 +30,16 @@ block main
               )
 
             .form-group.mb-3
+              label.mb-2(for="category" ) Danh mục sản phẩm
+              select(class = "form-select" name="category" id="category" required)
+                option(value="" disabled ) -- Chọn danh mục --
+                each category in categories
+                  option(
+                    value=category.id
+                    selected = (product.category === category.id ? true : false)
+                    ) #{category.title}
+
+            .form-group.mb-3
               label.mb-2(for="description") Mô tả
               textarea(name="description" , 
                 class = "form-control textarea-mce" id="description" ,
@@ -80,7 +90,7 @@ block main
 
             .form-group.mb-3
               label.mb-2(for="status") Trạng thái
-              select( class = "form-control" name="status" id="status")
+              select( class = "form-select" name="status" id="status")
                 option(value="active" selected = (product.status == "active" ? true : false) ) Hoạt động
                 option(value="inactive" selected = (product.status == "inactive" ? true : false) ) Không hoạt động
 
