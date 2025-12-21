@@ -1,7 +1,7 @@
 /* main-body */
 .main-body {
-  position: relative;
-  top: 60px;
+  padding-top: 60px;
+  flex: 1;
 }
 /* end main-body */
 

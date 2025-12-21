@@ -2,6 +2,7 @@ extends ../../layout/layoutDefault.pug
 
 block main
   .container.my-3
+
     .container-cart 
       .title-category-header 
         h4 Sản phẩm của bạn
@@ -29,8 +30,8 @@ block main
                           width="80px"
                         )
                       td
-                        a(href=`/products/detail/${item.slug}`) #{item.title}
-                      td #{item.newPrice}$
+                        a(href=`/product/detail/${item.slug}`) #{item.title}
+                      td= Number(item.newPrice).toLocaleString('vi-VN') + ' đ'
                       td
                         input(
                           type="number"
@@ -40,9 +41,10 @@ block main
                           product-id=item.id
                           style="width: 60px"
                         )
-                      td #{item.quantity * item.newPrice}$
+                      - const totalPriceItem =  item.quantity * item.newPrice
+                      td=totalPriceItem.toLocaleString('vi-VN') + ' đ'
 
-              h4(class="text-right") Tổng tiền: #{totalPrice}$
+              h4(class="text-right") Tổng tiền: #{(totalPrice.toLocaleString('vi-VN') + ' đ')}
 
 
             else
@@ -50,12 +52,18 @@ block main
                 | Giỏ hàng của bạn đang trống. 
                 a(href="/") Mua sắm ngay!
     .container-cart.mt-5
+      if error.length > 0
+        .error-message#errorMessage
+          | #{error}
+      if success.length > 0
+        .success-message#successMessage
+        | #{success}
       .title-category-header 
         h4 Sản phẩm của bạn
       .inner-cart-order
         form(action="/checkout/order" method="post") 
           .form-group.mb-3
-            input(type="email" name = "email" class = "form-control" placeHolder = "Email")
+            input(type="email"  name = "email" class = "form-control" placeHolder = "Email")
           .form-group.mb-3
             input(type="text" name = "fullName" class = "form-control" placeHolder = "Họ và tên")
           .form-group.mb-3

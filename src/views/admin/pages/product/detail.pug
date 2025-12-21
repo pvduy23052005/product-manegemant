@@ -28,7 +28,7 @@ block main
                       span(class = "btn-inactive") Ngừng
                 tr
                   td.fw-bold Giá
-                  td.text-primary= `$${product.price}`
+                  td.text-primary=product.price.toLocaleString('vi-VN') + ' đ'
                 tr
                   td.fw-bold Giảm giá
                   td.text-danger= `${product.discountPercentage}%`

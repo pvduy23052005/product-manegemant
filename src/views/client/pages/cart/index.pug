@@ -2,6 +2,13 @@ extends ../../layout/layoutDefault.pug
 
 block main
   .container.my-3
+    if error.length > 0
+      .error-message#errrorMessage
+        | #{error}
+    if success.length > 0
+      .success-message#successMessage
+        | #{success}
+
     .container-cart 
       .title-category-header 
         h4 Sản phẩm của bạn
@@ -30,8 +37,8 @@ block main
                           width="80px"
                         )
                       td
-                        a(href=`/products/detail/${item.slug}`) #{item.title}
-                      td #{item.newPrice}$
+                        a(href=`/product/detail/${item.slug}`) #{(item.title)}
+                      td #{(Number(item.newPrice).toLocaleString('vi-VN') + ' đ')}$
                       td
                         input(
                           type="number"
@@ -41,14 +48,14 @@ block main
                           product-id=item.id
                           style="width: 60px"
                         )
-                      td #{item.quantity * item.newPrice}$
+                      td #{(Number(item.quantity * item.newPrice).toLocaleString('vi-VN') + ' đ')}
                       td
                         a(
                           href=`/cart/delete/${item.id}`
                           class="btn btn-danger"
                         ) Xóa
 
-              h4(class="text-right") Tổng tiền: #{totalPrice}$
+              h4(class="text-right") Tổng tiền: #{(totalPrice.toLocaleString('vi-VN') + ' đ')}
 
               div(class="text-right mt-3")
                 a(href="/checkout" class="btn btn-success") Thanh toán

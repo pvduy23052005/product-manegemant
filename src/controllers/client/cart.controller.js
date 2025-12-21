@@ -41,12 +41,13 @@ module.exports.addPost = async (req, res) => {
       }
     );
   }
+
   const data = await Product.findOne({
     _id: productId,
   }).select("slug");
 
   req.flash("success", "Thêm sản phẩm vào giỏ hàng thành công!");
-  res.redirect(`/product/detial/${data.slug}`);
+  res.redirect(`/product/detail/${data.slug}`);
 };
 
 // [get] /cart .

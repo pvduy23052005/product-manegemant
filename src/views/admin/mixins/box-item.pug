@@ -22,7 +22,7 @@ mixin box-item(listItem  , title , keySearch = "")
               select(name="" class = "box-default text" select-change-status)
                 option(value="") -- Trạng thái -- 
                 option(value="active") Hoạt động
-                option(value="inactive") Ngừng 
+                option(value="inactive") Ngừng hoạt động 
 
           .col-2.col-md-2
             div(class = "box-menu")
@@ -104,7 +104,7 @@ mixin box-item(listItem  , title , keySearch = "")
               div 
                 img(src=item.thumbnail, alt=item.title)  
             .col-2
-              div.text  #{item.price} 
+              div.text=item.price.toLocaleString('vi-VN') + ' đ'
             .col-1
               div.text  #{item.stock} 
             .col-1

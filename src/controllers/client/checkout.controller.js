@@ -40,24 +40,25 @@ module.exports.checkoutPost = async (req, res) => {
 
   if (!req.body.email) {
     req.flash("error", "Vui lòng nhập đầy đủ thông tin");
-    redirect("/checkout");
+    res.redirect("/checkout");
     return;
   }
   if (!req.body.fullName) {
     req.flash("error", "Vui lòng nhập đầy đủ thông tin");
-    redirect("/checkout");
+    res.redirect("/checkout");
     return;
   }
   if (!req.body.address) {
     req.flash("error", "Vui lòng nhập đầy đủ thông tin");
-    redirect("/checkout");
+    res.redirect("/checkout");
     return;
   }
   if (!req.body.phone) {
     req.flash("error", "Vui lòng nhập đầy đủ thông tin");
-    redirect("/checkout");
+    res.redirect("/checkout");
     return;
   }
+
   try {
     const cart = await Cart.findOne({
       _id: cartId,
@@ -74,7 +75,7 @@ module.exports.checkoutPost = async (req, res) => {
 
       product.quantity = item.quantity;
       product.product_id = item.product_id;
-
+      products.push(product);
     }
 
     const order = {
@@ -83,6 +84,8 @@ module.exports.checkoutPost = async (req, res) => {
       userInfo: userInfo,
       products: products,
     };
+
+    console.log(order);
 
     const newOrder = new Order(order);
     newOrder.save();
@@ -98,7 +101,7 @@ module.exports.checkoutPost = async (req, res) => {
     req.flash("success", "Đặt hàng thành công");
   } catch (error) {
     console.log(error);
-    req.flash("success", "Vui lòng thử lại");
+    req.flash("error", "Vui lòng thử lại");
   }
   res.redirect("/cart");
 };

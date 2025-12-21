@@ -22,11 +22,11 @@ block main
             .box-item
               .box-image 
                 span(class = "discount") -#{item.discountPercentage}%
-                a(href=`/product/detial/${item.slug}`) 
+                a(href=`/product/detail/${item.slug}`) 
                   img(src= item.thumbnail class = "image-product" alt=item.title)
               .box-main 
-                a(href=`/product/detial/${item.slug}`) 
+                a(href=`/product/detail/${item.slug}`) 
                   span(class = "title") #{item.title}
-                span(class = "price") #{item.price} $
+                span(class = "price") #{(item.price.toLocaleString('vi-VN') + ' đ')} $
       .see-more 
         a(href="#" class = "btn-see-more") Xem thêm sản phẩm <i class="fa-solid fa-arrow-right"></i>

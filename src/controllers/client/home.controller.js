@@ -20,8 +20,8 @@ module.exports.index = async (req, res) => {
   });
 };
 
-// [get] /product/detial/:slug.
-module.exports.detial = async (req, res) => {
+// [get] /product/detail/:slug.
+module.exports.detail = async (req, res) => {
   try {
     const slug = req.params.slug;
 
@@ -29,7 +29,7 @@ module.exports.detial = async (req, res) => {
       slug: slug,
     });
 
-    res.render("client/pages/product/detial.pug", {
+    res.render("client/pages/product/detail.pug", {
       title: product.slug,
       product: product,
     });

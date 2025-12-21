@@ -19,7 +19,7 @@ module.exports.index = async (req, res) => {
   const categories = await Category.find(find).sort({ createdAt: -1 });
 
   res.render("admin/pages/category/index", {
-    title: "Category",
+    title: "Danh mục",
     categories: categories,
     keySearch: req.query.keySeach || "",
   });

@@ -34,7 +34,7 @@ module.exports.index = async (req, res) => {
   }
 
   res.render("admin/pages/product/index", {
-    title: "Products",
+    title: "Sản phẩm",
     listProduct: listProduct,
     keySearch: req.query.keySearch || "",
   });

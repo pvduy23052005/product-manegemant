@@ -18,7 +18,7 @@ block main
             span(class = "stock text") Tình trạng: #{product.stock > 0 ? 'Còn hàng' : 'Hết hàng'}  
             .row 
               span(class = "product-price-title text") Giá: 
-              span(class = "price") #{product.price} $
+              span(class = "price")=product.price.toLocaleString('vi-VN') + ' đ'
             .row
               form(action=`/cart/add/${product.id}`, method="post") 
                 label.mb-3(class = "quantity-title text") Số lượng mua:

@@ -114,8 +114,6 @@ module.exports.index = async (req, res) => {
       });
     });
 
-    console.log(statistic.orders);
-
     // Thống kê đơn hàng hôm nay
     const todayOrders = await Order.find({
       deleted: false,
@@ -269,7 +267,7 @@ module.exports.index = async (req, res) => {
     }));
 
     res.render("admin/pages/dashboard/index", {
-      title: "Dashboard",
+      title: "Trang chủ",
       statistic,
       topProducts: topProductsDetails,
       topCustomers,
