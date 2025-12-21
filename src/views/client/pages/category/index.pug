@@ -1,0 +1,31 @@
+extends ../../layout/layoutDefault.pug
+
+block main 
+  .container 
+
+    //- container-product
+    .container-product 
+      if products.length > 0 
+        .title-product-header 
+          h4 Danh mục: #{slug}
+
+        .row 
+          each item in products  
+            .col-xl-2.col-lg-3.col-md-4.col-sm-6.mb-4
+              .box-item
+                .box-image 
+                  if item.discountPercentage > 0
+                    span.discount -#{item.discountPercentage}%
+                  a(href=`/product/detail/${item.slug}`) 
+                    img.image-product(src=item.thumbnail alt=item.title)
+
+                .box-main 
+                  a.title-link(href=`/product/detail/${item.slug}`) 
+                    h5.title #{item.title}
+
+                  .price-group
+                    span.price-new #{(item.price * (1 - item.discountPercentage/100)).toLocaleString('vi-VN')}đ
+
+      else 
+        .title-product-header 
+          h4 Danh mục: #{slug} Không có sản phẩm nào . 

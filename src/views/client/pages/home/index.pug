@@ -10,7 +10,7 @@ block main
 
       .inner-category#categoryScroll
         each item in categories
-          a.box-category(href=`/products/category/${item.slug}`)
+          a.box-category(href=`/category/${item.slug}`)
             img.image-category(src=item.thumbnail alt=item.title)
             span.title-category= item.title
 
