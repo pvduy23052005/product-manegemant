@@ -236,3 +236,22 @@ module.exports.resetPasswordPost = async (req, res) => {
     res.redirect("/user/login");
   } catch (error) {}
 };
+
+// [get] /user/profile .
+module.exports.profile = async (req, res) => {
+  try {
+    const user = res.locals.user;
+
+    if (!user) {
+      return res.redirect("/user/login");
+    }
+    const find = {
+      deleted: false,
+    };
+
+    res.render("client/pages/user/profile", {
+      title: "Thông tin cá nhân",
+      user: user,
+    });
+  } catch (error) {}
+};

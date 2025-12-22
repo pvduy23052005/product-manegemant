@@ -1,0 +1,94 @@
+extends ../../layout/layoutDefault.pug
+
+block main 
+  .container.my-5
+    .container-order
+      .title-order-header.mb-4
+        h4 Danh sách đơn hàng
+      
+      if orders && orders.length > 0
+        .row.g-4
+          each order in orders
+            .col-12
+              .order-card
+                //- Order Header
+                .order-header
+                  .order-info
+                    .order-id
+                      i.fas.fa-receipt.me-2
+                      strong Mã đơn: 
+                      span= order._id
+                    .order-date
+                      i.far.fa-calendar-alt.me-2
+                      span= new Date(order.createdAt).toLocaleString('vi-VN', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' })
+
+                //- Customer Info
+                .customer-info
+                  .row
+                    .col-md-6
+                      .info-item
+                        i.fas.fa-user.me-2
+                        strong Người nhận: 
+                        span= order.userInfo.fullName
+                    .col-md-6
+                      .info-item
+                        i.fas.fa-phone.me-2
+                        strong SĐT: 
+                        span= order.userInfo.phone
+                    .col-md-6
+                      .info-item
+                        i.fas.fa-envelope.me-2
+                        strong Email: 
+                        span= order.userInfo.email
+                    .col-md-6
+                      .info-item
+                        i.fas.fa-map-marker-alt.me-2
+                        strong Địa chỉ: 
+                        span= order.userInfo.address
+
+                //- Products List
+                .products-list
+                  each product in order.products
+                    .product-item
+                      .product-info
+                        .product-name
+                          i.fas.fa-box.me-2
+                          | Sản phẩm ##{product.product_id.slice(-6)}
+                        .product-quantity
+                          | Số lượng: 
+                          span.fw-bold= product.quantity
+                      .product-price
+                        if product.discountPercentage > 0
+                          .original-price= product.price.toLocaleString('vi-VN') + ' đ'
+                          .discount-badge -#{product.discountPercentage}%
+                        - var finalPrice = product.price * (1 - product.discountPercentage / 100)
+                        .final-price= finalPrice.toLocaleString('vi-VN') + ' đ'
+                      .product-total
+                        - var totalPrice = finalPrice * product.quantity
+                        .text-muted Thành tiền:
+                        .total-amount= totalPrice.toLocaleString('vi-VN') + ' đ'
+
+                //- Order Footer
+                .order-footer
+                  .order-total
+                    span Tổng đơn hàng:
+                    - var orderTotal = 0
+                    each product in order.products
+                      - orderTotal += product.price * (1 - product.discountPercentage / 100) * product.quantity
+                    strong.total-price= orderTotal.toLocaleString('vi-VN') + ' đ'
+                  .order-actions
+                    //- a.btn.btn-outline-primary(href=`/order/${order._id}`)
+                    //-   i.fas.fa-eye.me-2
+                    //-   | Chi tiết
+                    //- button.btn.btn-danger(type="button" onclick=`cancelOrder('${order._id}')`)
+                    //-   i.fas.fa-times.me-2
+                    //-   | Hủy đơn
+      else
+        .empty-orders
+          .empty-icon
+            i.fas.fa-shopping-cart
+          h5 Chưa có đơn hàng nào
+          p.text-muted Bạn chưa đặt đơn hàng nào. Hãy khám phá các sản phẩm của chúng tôi!
+          a.btn.btn-primary(href="/products")
+            i.fas.fa-shopping-bag.me-2
+            | Mua sắm ngay

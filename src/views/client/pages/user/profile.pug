@@ -1,0 +1,14 @@
+extends ../../layout/layoutDefault.pug
+
+block main 
+  .container 
+    .container-profile 
+      .title-profile-header 
+        a(href="/") 
+          i(class='bx  bx-arrow-big-left icon-back')
+        h4 Thông tin cá nhân
+      .row 
+        .col-6 
+          .inner-user 
+            h5 Ho Ten: #{user.fullName}
+            h5 Email: #{user.email}
