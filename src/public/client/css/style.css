@@ -483,12 +483,30 @@ h4 {
   background-color: var(--color-bg-sidebar);
 }
 
-.container-cart .title-category-header h4 {
-  font-size: 32px;
-  color: var(--color-primary-hover);
+.container-cart .title-cart-header {
+  display: flex;
+  align-items: center;
   border-bottom: 3px solid var(--color-primary-hover);
   margin-bottom: 20px;
 }
+
+.container-cart .title-cart-header h4 {
+  font-size: 28px;
+  color: var(--color-primary-hover);
+  margin-bottom: 20px;
+  position: relative;
+  margin: 0;
+}
+
+.container-cart .title-cart-header h4::before {
+  content: "";
+  width: 5px;
+  background-color: var(--color-primary-hover);
+  height: 20px;
+  display: inline-block;
+  margin-right: 15px;
+}
+
 .container-cart .inner-cart {
   width: 100%;
 }
@@ -574,6 +592,7 @@ h4 {
   display: flex;
   align-items: center;
   margin-bottom: 20px;
+  position: relative;
 }
 
 .container-category .title-category-header h4 {
@@ -733,6 +752,11 @@ h4 {
   box-shadow: var(--item-box-shadow);
 }
 
+.container-order .title-order-header {
+  display: flex;  
+  align-items: center;
+}
+
 .title-order-header h4 {
   color: #333;
   font-size: 28px;
@@ -749,6 +773,9 @@ h4 {
   height: 20px;
   display: inline-block;
   margin-right: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .title-order-header h4 i {

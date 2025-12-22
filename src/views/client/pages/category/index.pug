@@ -7,6 +7,8 @@ block main
     .container-product 
       if products.length > 0 
         .title-product-header 
+          a(href="/") 
+            i(class='bx bx-arrow-big-left icon-back')
           h4 Danh mục: #{slug}
 
         .row 

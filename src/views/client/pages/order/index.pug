@@ -4,6 +4,8 @@ block main
   .container.my-5
     .container-order
       .title-order-header.mb-4
+        a(href="/") 
+          i(class='bx bx-arrow-big-left icon-back')
         h4 Danh sách đơn hàng
       
       if orders && orders.length > 0
