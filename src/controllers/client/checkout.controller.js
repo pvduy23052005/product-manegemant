@@ -1,7 +1,6 @@
 const Cart = require("../../models/cart.model");
 const Product = require("../../models/product.model");
 const Order = require("../../models/order.model");
-const { redirect } = require("react-router-dom");
 
 // [get] /checkout
 module.exports.index = async (req, res) => {
