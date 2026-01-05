@@ -1,8 +1,8 @@
-# 🛒 Dự Án Website Thương Mại Điện Tử Mini
+# Dự Án Website Thương Mại Điện Tử Mini
 
 Một ứng dụng web được xây dựng bằng **Node.js**, **Express.js**, và **Pug** , Dự án bao gồm đầy đủ các luồng chức năng cho người dùng (Client) và quản trị viên (Admin), tích hợp upload ảnh lên Cloud và xác thực qua Email.
 
-## 🚀 Công Nghệ Sử Dụng
+## Công Nghệ Sử Dụng
 
 * **Backend:** Node.js, Express.js
 * **Frontend (SSR):** Pug Template Engine, Bootstrap 5
@@ -11,11 +11,11 @@ Một ứng dụng web được xây dựng bằng **Node.js**, **Express.js**, 
 * **Xác thực:** Cookie/Session
 * **Tiện ích:** Nodemailer (Gửi email xác nhận đơn hàng/OTP)
 
-## ✨ Tính Năng Chính
+##  Tính Năng Chính
 
 Dựa trên danh sách phát triển, dự án bao gồm các chức năng sau:
 
-### 👤 Phía Khách Hàng (Client)
+###  Phía Khách Hàng (Client)
 * **Tài khoản & Bảo mật:**
     * Đăng ký & Đăng nhập tài khoản.
     * Đăng xuất an toàn.
@@ -32,7 +32,7 @@ Dựa trên danh sách phát triển, dự án bao gồm các chức năng sau:
     * Tính tổng tiền đơn hàng.
     * Thanh toán đơn hàng (Checkout).
 
-### 🛡️ Phía Quản Trị (Admin)
+### Phía Quản Trị (Admin)
 * **Bảo mật & Phân quyền:**
     * Đăng nhập trang quản trị.
     * **Private Routes:** Middleware bảo vệ các route admin, ngăn chặn truy cập trái phép.
@@ -45,7 +45,7 @@ Dựa trên danh sách phát triển, dự án bao gồm các chức năng sau:
 * **Theo dõi hoạt động (Audit Log):**
     * Ghi nhận lịch sử: "Thêm bởi ai", "Cập nhật bởi ai", "Xóa bởi ai" (giúp quản lý trách nhiệm nhân sự).
 
-## 🛠️ Hướng Dẫn Cài Đặt (Cách Truyền Thống)
+## Hướng Dẫn Cài Đặt (Cách Truyền Thống)
 
 Yêu cầu máy tính đã cài đặt Node.js và MongoDB.
 
@@ -89,7 +89,7 @@ Yêu cầu máy tính đã cài đặt Node.js và MongoDB.
     * Addmin: `http://localhost:5555/admin/dashboard` .
 
 
-## 📂 Cấu Trúc Thư Mục
+## Cấu Trúc Thư Mục
 
 ```text
 ├── public/           # File tĩnh (CSS, JS, Images)
