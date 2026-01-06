@@ -371,3 +371,27 @@ if (selectChangeCategory) {
 }
 
 // end select category
+
+// File: script.js
+document.addEventListener("DOMContentLoaded", function () {
+  const currentPath = window.location.pathname;
+  const menuLinks = document.querySelectorAll(".sidebar-nav a");
+
+  menuLinks.forEach((link) => {
+    const linkPath = link.getAttribute("href");
+
+    if (currentPath === linkPath) {
+      link.classList.add("active"); 
+
+      const parentSubMenu = link.closest(".sub-menu");
+      if (parentSubMenu) {
+        parentSubMenu.classList.add("show-sub-menu"); 
+        const parentNavBox = parentSubMenu.previousElementSibling;
+        if (parentNavBox) {
+          const parentLink = parentNavBox.querySelector(".nav-link");
+          if (parentLink) parentLink.classList.add("active-parent");
+        }
+      }
+    }
+  });
+});
