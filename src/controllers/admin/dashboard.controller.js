@@ -49,8 +49,7 @@ module.exports.index = async (req, res) => {
     statistic.users.total = await User.countDocuments({
       deleted: false,
     });
-
-    // User đăng ký hôm nay
+    
     const today = new Date();
     today.setHours(0, 0, 0, 0);
     const tomorrow = new Date(today);

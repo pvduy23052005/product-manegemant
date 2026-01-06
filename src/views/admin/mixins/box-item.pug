@@ -106,8 +106,8 @@ mixin box-item(listItem  , title , keySearch = "" , categories = [])
                       change-status = `${item.status}-${item.id}`
                       ) Ngừng hoạt động
 
-            .col-2.text 
-              div 
+            .col-2
+              div.text
                 img(src=item.thumbnail, alt=item.title)  
             .col-2
               div.text=item.price.toLocaleString('vi-VN') + ' đ'

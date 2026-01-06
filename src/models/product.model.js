@@ -51,8 +51,11 @@ const productSchema = new mongoose.Schema(
       unique: true,
       slugPaddingSize: 4, // Thêm số nếu trùng (ví dụ: san-pham-0001)
     },
-    createBy: {
-      account_id: String,
+    createdBy: {
+      account_id: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Account",
+      },
       createTime: {
         type: Date,
         default: Date.now(),
@@ -67,7 +70,10 @@ const productSchema = new mongoose.Schema(
     },
     updatedBy: [
       {
-        account_id: String,
+        account_id: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Account",
+        },
         updatedTime: {
           type: Date,
           default: Date.now(),

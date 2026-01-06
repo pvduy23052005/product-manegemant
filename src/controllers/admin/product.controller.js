@@ -31,23 +31,12 @@ module.exports.index = async (req, res) => {
     deleted: false,
   }).sort({ createdAt: -1 });
 
-  for (const product of listProduct) {
-    const user = await Account.findOne({
-      _id: product.createBy.account_id,
-    }).select("fullName");
-    if (user) {
-      product.userCreate = user.fullName;
-    } else {
-      product.userCreate = "";
-    }
-  }
-
   res.render("admin/pages/product/index", {
     title: "Sản phẩm",
     listProduct: listProduct,
     keySearch: req.query.keySearch || "",
     categories: categories,
-    currentCategory : categoryId || ""
+    currentCategory: categoryId || "",
   });
 };
 
@@ -105,7 +94,7 @@ module.exports.createPost = async (req, res) => {
       req.body.position = parseInt(req.body.position);
     }
 
-    req.body.createBy = {
+    req.body.createdBy = {
       account_id: res.locals.user.id,
     };
 
@@ -268,7 +257,16 @@ module.exports.detail = async (req, res) => {
   const product = await Product.findOne({
     _id: id,
     deleted: false,
-  });
+  })
+    .populate({
+      path: "createdBy.account_id",
+      select: "fullName email",
+    })
+    .populate({
+      path: "updatedBy.account_id",
+      select: "fullName email",
+    });
+  console.log(product);
   res.render("admin/pages/product/detail", {
     title: `Chi tiết sản phẩm ${product.title}`,
     product: product,

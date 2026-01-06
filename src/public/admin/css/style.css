@@ -128,8 +128,9 @@ a {
 
 .container-wraper .container-list-item .box-item img {
   width: 60px;
-  height: auto;
-  object-fit: contain;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 12px;
 }
 
 .container-wraper .container-list-item div {
