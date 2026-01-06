@@ -353,3 +353,21 @@ if (clearUrl) {
   });
 }
 // end clear
+
+// select category
+const selectChangeCategory = document.querySelector("[select-change-category]");
+if (selectChangeCategory) {
+  const url = new URL(window.location.href);
+  selectChangeCategory.addEventListener("change", (e) => {
+    const categoryId = e.target.value;
+
+    if (categoryId != "") {
+      url.searchParams.set("categoryId", categoryId);
+    } else {
+      url.searchParams.delete("categoryId");
+    }
+    window.location.href = url.href;
+  });
+}
+
+// end select category

@@ -1,4 +1,4 @@
-mixin box-item(listItem  , title , keySearch = "")
+mixin box-item(listItem  , title , keySearch = "" , categories = [])
   .container.mt-2
     .container-wraper
       .container-menu 
@@ -25,9 +25,15 @@ mixin box-item(listItem  , title , keySearch = "")
                 option(value="inactive") Ngừng hoạt động 
 
           .col-2.col-md-2
-            div(class = "box-menu")
-              select(name="" class = "box-default text")
-                option(value="" active class = "box-default text") -- Danh mục --
+            if categories.length > 0 
+              div(class = "box-menu")
+                select(name="" class = "box-default text" select-change-category)
+                  option(value="" active class = "box-default text") -- Danh mục -- 
+                    each category in categories 
+                      option(
+                        value = category.id 
+                        selected = ( category.id === currentCategory) 
+                        ) #{category.title}
           .col-2.col-md-2
             div(class = "box-menu").form-group
               select(name="" class = "box-default text " select-change-multiple)

@@ -5,13 +5,19 @@ const Account = require("../../models/account.model");
 
 //[get] /admin/product
 module.exports.index = async (req, res) => {
+  const categoryId = req.query.categoryId;
   const status = req.query.status;
+
   let find = {
     deleted: false,
   };
 
   if (status) {
     find["status"] = status;
+  }
+
+  if (categoryId) {
+    find["category"] = categoryId;
   }
 
   let objectSearch = helperSearch.helperSearch(req);
@@ -21,6 +27,9 @@ module.exports.index = async (req, res) => {
   }
 
   const listProduct = await Product.find(find).sort({ createdAt: -1 });
+  const categories = await Category.find({
+    deleted: false,
+  }).sort({ createdAt: -1 });
 
   for (const product of listProduct) {
     const user = await Account.findOne({
@@ -37,6 +46,8 @@ module.exports.index = async (req, res) => {
     title: "Sản phẩm",
     listProduct: listProduct,
     keySearch: req.query.keySearch || "",
+    categories: categories,
+    currentCategory : categoryId || ""
   });
 };
 
@@ -122,12 +133,14 @@ module.exports.edit = async (req, res) => {
   const categories = await Category.find({
     deleted: false,
     status: "active",
-  }).sort({ createdAt: -1 }).select("title");
+  })
+    .sort({ createdAt: -1 })
+    .select("title");
 
   res.render("admin/pages/product/edit", {
     title: "edit product",
     product: product,
-    categories : categories
+    categories: categories,
   });
 };
 
