@@ -75,9 +75,6 @@ Yêu cầu máy tính đã cài đặt Node.js và MongoDB.
     EMAIL_USER=xxx@gmail.com
     EMAIL_PASS=xxx
 
-    # Session
-    SESSION_SECRET=secret_key
-    ```
 
 4.  **Chạy dự án**
     ```bash
